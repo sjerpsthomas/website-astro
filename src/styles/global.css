@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+footer {
+  @apply py-5 text-sm;
+}
+
+/* Body text color */
+body {
+  color: #ffffff;
+  background-color: #000000;
+}
+
+/* Text sections */
+section {
+  font-family: "Albert Sans Variable", sans-serif;
+  @apply w-full xl:px-[15%] lg:px-[10%] px-[10%] py-10;
+
+  /* Notion paragraphs */
+  .notion-paragraph {
+    /* Headers, paragraphs and links */
+    h1 {
+      font-family: "Shrikhand", serif;
+      font-size: 30pt;
+      text-transform: uppercase;
+    }
+    p {
+      @apply mb-2;
+    }
+    a {
+      @apply underline underline-offset-4 text-blue-500;
+    }
+
+    /* Lists and tables */
+    li {
+      list-style-position: outside;
+      list-style-type: disc;
+      margin-left: 1.2rem;
+      padding-left: 0.3rem;
+    }
+    table {
+      @apply my-5 w-full;
+    }
+    table, th {
+      border: 1px solid;
+    }
+    td {
+      border: 1px solid;
+      @apply px-2 py-2;
+    }
+  }
+}
+
+:root {
+  --color-yiska-white: #ffffff;
+  --color-yiska-black: #000000;
+
+  --color-yiska-purple: #8900b5;
+  --color-yiska-orange: #f9560b;
+  --color-yiska-beige: #f3e8d6;
+  --color-yiska-blue: #3340ff;
+
+  --color-yiska-sec-purple: #b070c7;
+  --color-yiska-sec-grey: #aca1c9;
+  --color-yiska-sec-blue: #cee3ef;
+  --color-yiska-sec-red: #d12626;
+}

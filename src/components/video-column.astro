@@ -1,0 +1,13 @@
+---
+
+type Props = {
+  src: string;
+}
+
+const { src } = Astro.props;
+
+---
+
+<div class="text-center text-blue-200 xl:h-96 h-80 bg-black shadow-xl">
+  <iframe class='size-full' src={src}/>
+</div>

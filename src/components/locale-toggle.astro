@@ -1,0 +1,21 @@
+﻿---
+import {DEFAULT_LOCALE, isLocale} from "../lib/locale";
+import type {Locale} from "../lib/locale";
+const url = Astro.url.pathname;
+
+const currentLocale: Locale = url.split('/').find((element) => isLocale(element)) ?? DEFAULT_LOCALE;
+const href = currentLocale === 'nl' ? '/en/' : '/';
+---
+
+<a
+  href={href}
+  class="navbar_item m-0 md:m-0 hover:scale-105 transition-transform w-[7rem] pl-2 md:py-3 cursor-pointer flex items-center justify-center"
+>
+  <span class={currentLocale === 'nl' ? 'font-black underline' : ''}>
+    NL
+  </span>
+  <span class="mx-1">/</span>
+  <span class={currentLocale === 'en' ? 'font-black underline' : ''}>
+    EN
+  </span>
+</a>

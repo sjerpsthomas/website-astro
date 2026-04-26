@@ -1,0 +1,39 @@
+---
+import NotionParagraph from "../notion-paragraph.astro";
+import PolaroidColumn from "../polaroid-column.astro";
+import SectionWithBackground from "../section-with-background.astro";
+import { cn } from "../../lib/tailwind";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  section: CollectionEntry<'sections'>;
+}
+
+const { section } = Astro.props;
+
+const polaroid = section.data.polaroid_links ?? section.data.polaroid_rechts;
+
+const isLeft = !!section.data.polaroid_links;
+// eslint-disable-next-line unicorn/no-nested-ternary,sonarjs/no-nested-conditional
+const sectionClass = polaroid ? isLeft ? "lg:flex-row-reverse" : "lg:flex-row" : "";
+
+const background = section.data.achtergrond ?? "zwart";
+
+const stickerCount = section.data.aantal_stickers;
+---
+
+<SectionWithBackground
+  className={cn("flex flex-col gap-x-20 gap-y-10 items-center", sectionClass)}
+  backgroundName={background}
+  stickerCount={stickerCount}
+>
+  <div class="flex xl:justify-end justify-center">
+    <NotionParagraph section={section}/>
+  </div>
+
+  {polaroid && 
+    <div class="flex justify-center">
+      <PolaroidColumn rotation={-5} polaroidData={polaroid} />
+    </div>
+  }
+</SectionWithBackground>

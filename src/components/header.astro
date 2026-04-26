@@ -1,0 +1,30 @@
+---
+import LocaleToggle from "@/components/locale-toggle.astro";
+import {getSections, toAnchorName} from "../lib/section";
+import type {Locale} from "../lib/locale";
+
+type Props = {
+  locale: Locale,
+}
+const { locale } = Astro.props;
+
+const sections = await getSections(locale);
+
+---
+
+<header class="w-fit mx-auto px-3 pt-1 sticky top-2 z-10">
+  <div class="flex flex-wrap justify-center rounded-3xl bg-[#00000088] backdrop-blur-lg select-none">
+    {/* Language toggle */}
+    <LocaleToggle />
+
+    {/* Links */}
+    {sections.map((section) => 
+      <a
+        href={`#${toAnchorName(section)}`}
+        class="navbar_item py-1 text-nowrap hover:scale-105 transition-transform w-[8rem] flex justify-center items-center text-center"
+      >
+        {section.data.title_navbar ?? section.data.title}
+      </a>
+    )}
+  </div>
+</header>

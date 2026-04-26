@@ -1,0 +1,37 @@
+---
+import NotionParagraph from "../notion-paragraph.astro";
+import SectionWithBackground from "../section-with-background.astro";
+import type { CollectionEntry } from "astro:content";
+import { Icon } from 'astro-icon/components'
+import {toColorVariable} from "../../lib/color";
+
+interface Props {
+  section: CollectionEntry<'sections'>;
+}
+
+const { section } = Astro.props;
+
+const socials = section.data.socials ?? [];
+
+const background = section.data.achtergrond ?? "zwart";
+
+const textFgColorClass = toColorVariable(section.data.tekstkleur ?? "wit");
+
+const stickerCount = section.data.aantal_stickers;
+---
+
+<SectionWithBackground
+  backgroundName={background}
+  stickerCount={stickerCount}
+>
+  <div class="flex justify-center">
+    <NotionParagraph section={section} className="mb-0">
+      {socials.map(social =>
+        <a href={social.url} target="_blank" class="flex flex-row justify-center items-center">
+          <Icon style={{ color: textFgColorClass }} name=`mdi:${social.social.toLowerCase()}` width="2rem" height="2rem" />
+          <span class="ml-0.5">/{social.name}</span>
+        </a>
+      )}
+    </NotionParagraph>
+  </div>
+</SectionWithBackground>

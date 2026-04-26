@@ -1,0 +1,29 @@
+---
+import type { CollectionEntry } from "astro:content";
+import ContactSection from "./contact-section.astro";
+import VideosSection from "./videos-section.astro";
+import TextSection from "./text-section.astro";
+import type { Section } from "../../lib/section";
+
+interface Props {
+  section: CollectionEntry<'sections'>;
+}
+
+const { section } = Astro.props;
+
+const type: Section = section.data.type!
+
+---
+{(() => {
+  switch (type) {
+  case 'contact': {
+    return <ContactSection section={section}/>;
+  }
+  case 'videos': {
+    return <VideosSection section={section}/>;
+  }
+  default: {
+    return <TextSection section={section}/>;
+  }
+  }
+})()}

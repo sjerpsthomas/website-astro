@@ -1,0 +1,28 @@
+﻿---
+import {Image} from 'astro:assets';
+import thomasPill from '../assets/thomas_pill.png'
+---
+
+<section class="py-5 space-y-5 text-center">
+  <div>
+    <p class="">
+      <span>&copy;{" "}</span>
+      <span id="footer-year"/>
+      <span>{" | Yiska"}</span>
+    </p>
+    <p>Alle rechten voorbehouden. Of zoiets.</p>
+  </div>
+
+  <a class="size-fit block mx-auto hover:scale-105 transition-transform" href="https://www.thomassjerps.nl/" target="_blank">
+    <Image
+      class="w-[250px]"
+      style={{filter: "drop-shadow(3px 3px 4px rgba(0,0,0,0.2))"}}
+      src={thomasPill}
+      alt="Website gebouwd door Thomas Sjerps"
+    />
+  </a>
+</section>
+
+<script>
+  document.querySelector("#footer-year")!.textContent = new Date().getFullYear().toString();
+</script>

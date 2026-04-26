@@ -1,0 +1,12 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "strictNullChecks": true,
+    "baseUrl": ".",
+    "paths": {
+      "@*": ["./src/*"],
+      "@polaroid/*": ["src/assets/polaroid/*"],
+      "@achtergrond/*": ["src/assets/achtergrond/*"]
+    }
+  }
+}

@@ -1,0 +1,51 @@
+---
+import PageLayout from "../../layouts/page-layout.astro";
+import Section from "../../components/section/section.astro";
+import Logo from "../../components/logo.astro";
+import Slideshow from "../../components/slideshow.astro";
+import {getSections, toAnchorName} from "../../lib/section";
+import {DEFAULT_LOCALE, type Locale, LOCALES} from "../../lib/locale";
+
+export function getStaticPaths() {
+  return [...LOCALES.map(it => ({ params: { locale: it } })), { params: { locale: undefined } }];
+}
+
+const locale = (Astro.params.locale ?? DEFAULT_LOCALE) as Locale;
+
+const sections = await getSections(locale);
+---
+
+<PageLayout locale={locale}>
+  <div class="flex flex-col min-h-[70vh] items-center justify-center bg-black font-sans">
+    {/* Image slideshow background */}
+    <Slideshow/>
+
+    {/* Title element */}
+    <div class="absolute w-full min-h-[70vh] flex flex-col justify-center select-none">
+      <div class="scale-[85%] xs:scale-100 flex flex-col gap-2 items-center">
+        {/* Logo */}
+        <Logo/>
+
+        <span class="text-2xl font-bold pointer-events-none select-none"
+          style={{textShadow: "0 3px 5px rgba(0,0,0,1)"}}
+        >
+          faith-based jazz music
+        </span>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="flex flex-col">
+    {
+      sections.map(section =>
+        <div>
+          {/* Anchor */}
+          <div id={toAnchorName(section)} class="-translate-y-16"/>
+
+          <Section section={section}/>
+        </div>
+      )
+    }
+  </div>
+</PageLayout>

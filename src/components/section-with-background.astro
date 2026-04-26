@@ -1,0 +1,96 @@
+---
+import { isColor, toColorVariable } from "@lib/color";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import shuffle from "lodash/shuffle";
+
+interface Props {
+  className?: string;
+  backgroundName: string | ImageMetadata;
+  stickerCount: number;
+}
+
+const { className, backgroundName, stickerCount } = Astro.props;
+
+const stickerImages = Object.values(
+  import.meta.glob<ImageMetadata>('/src/assets/stickers/*.{jpeg,jpg,png,gif,webp,svg}', {
+    eager: true,
+    import: 'default'
+  })
+);
+
+let baseStyle: Record<string, string> = {};
+if (typeof backgroundName === "string" && isColor(backgroundName)) {
+  baseStyle["background-color"] = toColorVariable(backgroundName);
+} else if (typeof backgroundName === "object") {
+  baseStyle["background-image"] = `url(${backgroundName.src})`;
+  baseStyle["background-size"] = "cover";
+}
+
+const selectedStickers = shuffle(stickerImages).slice(0, stickerCount);
+---
+
+<section class:list={["sticker-section "]} style={baseStyle}>
+  <div class="sticker-container" aria-hidden="true" data-sticker-container>
+    {selectedStickers.map((img) =>
+      <div class="sticker" style={{ opacity: 0 }}>
+        <Image
+          src={img}
+          alt=""
+          width={150}
+          class="sticker-inner"
+        />
+      </div>
+    )}
+  </div>
+
+  <div class:list={["content", className]}>
+    <slot />
+  </div>
+</section>
+
+<style>
+  .sticker-section { position: relative; overflow: hidden; width: 100%; min-height: 300px; pointer-events: none; box-shadow: inset 0 5px 10px rgba(0 0 0 / 0.2); }
+  .sticker-container { position: absolute; inset: 0; pointer-events: none; z-index: 1;}
+  .sticker {
+    position: absolute;
+    will-change: transform, top, left;
+
+    transform-origin: center center;
+    transform: translate(-50%, -50%);
+
+    filter: drop-shadow(3px 3px 4px rgba(0,0,0,0.2));
+    pointer-events: auto;
+  }
+  .sticker-inner {
+    transition: transform 0.2s ease-out;
+  }
+  .sticker:hover .sticker-inner {
+    transform: scale(103%);
+  }
+  .content { position: relative; z-index: 2; pointer-events: auto; }
+</style>
+
+<script>
+  import {getRandomLocations} from "../lib/random-locations";
+
+  const containers = document.querySelectorAll('[data-sticker-container]');
+
+  for (const container of containers) {
+    const stickers = container.querySelectorAll('.sticker');
+    const randomLocations = getRandomLocations(stickers.length, 0.2);
+
+    for (const [index, randomLocation] of randomLocations.entries()) {
+      const sticker = stickers[index] as HTMLElement;
+
+      /* eslint-disable sonarjs/pseudo-random */
+      const endRot = Math.random() * 60 - 30;
+      const endScale = Math.random() * 0.4 + 0.3;
+
+      sticker.style.top = `${randomLocation.x * 100}%`;
+      sticker.style.left = `${randomLocation.y * 100}%`;
+      sticker.style.transform = `rotate(${endRot}deg) scale(${endScale})`;
+      sticker.style.opacity = "1";
+    }
+  }
+</script>

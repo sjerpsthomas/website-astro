@@ -1,0 +1,27 @@
+---
+import Head from "../components/head.astro";
+import Header from "../components/header.astro";
+import type {Locale} from "../lib/locale";
+import Footer from "../components/footer.astro";
+
+type Props = {
+  locale: Locale;
+};
+
+const { locale } = Astro.props;
+
+---
+
+<!doctype html>
+<html lang={locale} class="scroll-smooth">
+  <head>
+    <Head title="YISKA" />
+  </head>
+  <body>
+    <Header locale={locale} />
+    <main>
+      <slot />
+    </main>
+  </body>
+  <Footer/>
+</html>

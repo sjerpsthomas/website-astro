@@ -1,0 +1,43 @@
+---
+import {Image} from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/slideshow/*.{jpeg,jpg,png,webp}',
+  { eager: true }
+);
+
+const slides = Object.values(images).map((img) =>
+  img.default
+);
+---
+
+<div class="embla">
+  <div class="embla__viewport overflow-hidden">
+    <div class="embla__container flex">
+      {slides.map((slide) => 
+        <div class="embla__slide relative h-full w-full flex-[0_0_100%] min-w-0">
+          <Image
+            class="w-full h-[70vh] object-cover select-none"
+            src={slide}
+            alt={"YISKA"}
+          />
+        </div>
+      )}
+    </div>
+  </div>
+</div>
+
+<script>
+  import EmblaCarousel from 'embla-carousel';
+  import Autoplay from 'embla-carousel-autoplay';
+
+  const OPTIONS = {loop: true};
+
+  // Note: Added a check to ensure the element exists before initializing
+  const emblaNode = document.querySelector('.embla');
+  if (emblaNode) {
+    const viewportNode = emblaNode.querySelector('.embla__viewport') as HTMLElement;
+    EmblaCarousel(viewportNode, OPTIONS, [Autoplay()]);
+  }
+</script>

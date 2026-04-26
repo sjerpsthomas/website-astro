@@ -1,10 +1,13 @@
 ﻿---
 import {DEFAULT_LOCALE, isLocale} from "../lib/locale";
 import type {Locale} from "../lib/locale";
-const url = Astro.url.pathname;
 
-const currentLocale: Locale = url.split('/').find((element) => isLocale(element)) ?? DEFAULT_LOCALE;
-const href = currentLocale === 'nl' ? '/en/' : '/';
+type Props = {
+  currentLocale: Locale;
+  href: string;
+}
+
+const { currentLocale, href } = Astro.props;
 ---
 
 <a

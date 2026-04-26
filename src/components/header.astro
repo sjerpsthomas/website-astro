@@ -1,29 +1,37 @@
 ---
 import LocaleToggle from "@/components/locale-toggle.astro";
 import {getSections, toAnchorName} from "../lib/section";
-import type {Locale} from "../lib/locale";
+import {DEFAULT_LOCALE, isLocale, type Locale} from "../lib/locale";
 
 type Props = {
   locale: Locale,
 }
 const { locale } = Astro.props;
 
-const sections = await getSections(locale);
+const sections = [
+  { title: "CV", href: "cv" },
+  { title: "Portfolio", href: "portfolio" },
+]
 
+// i18n
+const url = Astro.url.pathname;
+const currentLocale: Locale = url.split('/').find((element) => isLocale(element)) ?? DEFAULT_LOCALE;
+// TODO: other pages have a different href
+const localeToggleHref = currentLocale === 'nl' ? '/en/' : '/';
 ---
 
 <header class="w-fit mx-auto px-3 pt-1 sticky top-2 z-10">
   <div class="flex flex-wrap justify-center rounded-3xl bg-[#00000088] backdrop-blur-lg select-none">
     {/* Language toggle */}
-    <LocaleToggle />
+    <LocaleToggle currentLocale={currentLocale} href={localeToggleHref} />
 
     {/* Links */}
     {sections.map((section) => 
       <a
-        href={`#${toAnchorName(section)}`}
+        href={`/${section.href}`}
         class="navbar_item py-1 text-nowrap hover:scale-105 transition-transform w-[8rem] flex justify-center items-center text-center"
       >
-        {section.data.title_navbar ?? section.data.title}
+        {section.title}
       </a>
     )}
   </div>

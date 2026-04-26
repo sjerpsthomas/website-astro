@@ -1,11 +1,12 @@
 import { COLORS } from "@lib/color";
 import { SECTION_TYPES } from "@lib/section.ts";
 import { defineCollection, z } from "astro:content";
+import type {SchemaContext} from "astro/content/config";
 
 const sections = defineCollection({
   type: "content",
 
-  schema: ({ image }) => z.object({
+  schema: ({ image }: SchemaContext) => z.object({
     title: z.string(),
 
     type: z.enum(SECTION_TYPES).default("tekst"),
@@ -29,4 +30,21 @@ const sections = defineCollection({
   }),
 });
 
-export const collections = { sections };
+const portfolio = defineCollection({
+  type: "content",
+
+  schema: ({ image }: SchemaContext) => z.object({
+    title: z.string(),
+    subtitle: z.string(),
+
+    image: image(),
+
+    tags: z.array(z.string()),
+
+    links: z.array(z.object({ text: z.string(), href: z.string() })),
+
+    date: z.date(),
+  }),
+});
+
+export const collections = { portfolio, sections };

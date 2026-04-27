@@ -14,16 +14,15 @@ body {
 
 /* Text sections */
 section {
-  font-family: "Albert Sans Variable", sans-serif;
+  font-family: "Manrope Variable", sans-serif;
   @apply w-full xl:px-[15%] lg:px-[10%] px-[10%] py-10;
 
   /* Notion paragraphs */
   .notion-paragraph {
     /* Headers, paragraphs and links */
     h1 {
-      font-family: "Shrikhand", serif;
+      font-family: "Literata Variable", serif;
       font-size: 30pt;
-      text-transform: uppercase;
     }
     p {
       @apply mb-2;
@@ -53,16 +52,6 @@ section {
 }
 
 :root {
-  --color-yiska-white: #ffffff;
-  --color-yiska-black: #000000;
-
-  --color-yiska-purple: #8900b5;
-  --color-yiska-orange: #f9560b;
-  --color-yiska-beige: #f3e8d6;
-  --color-yiska-blue: #3340ff;
-
-  --color-yiska-sec-purple: #b070c7;
-  --color-yiska-sec-grey: #aca1c9;
-  --color-yiska-sec-blue: #cee3ef;
-  --color-yiska-sec-red: #d12626;
+  --color-thomas-white: #ffffff;
+  --color-thomas-black: #000000;
 }

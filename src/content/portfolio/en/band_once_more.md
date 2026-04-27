@@ -1,0 +1,15 @@
+﻿---
+title: 'Band: Once More'
+subtitle: Jazz combo
+image: "/portfolio/band_once_more.jpg"
+tags:
+  - music
+  - association
+links:
+  - text: Band page
+    href: https://grooverjazz.nl/bands/Once%20More
+date: 2023-10-01
+---
+
+I play keys in the five-piece band Once More, once described as a 'warm blanket': besides traditional jazz, we also play old Disney songs and some funkier stuff.
+In the photo, we just received the 'Popdelft's Got You Covered' award for the best arrangement of Rihanna's 'Umbrella' (we turned it into a bossa nova)!

@@ -12,12 +12,11 @@ const oddEvenClass = isEven ? 'portfolio-section-odd' : 'portfolio-section-even'
 
 
 <section class:list={[ "flex flex-row h-[18rem] justify-stretch", oddEvenClass ]} style={{ backgroundImage: `url(${tempImage.src})`, backgroundSize: 'cover' }}>
-  <h1 class="h-full aspect-video text-2xl font-bold flex items-center justify-center">
+  <h1 class="h-full aspect-video text-2xl font-bold flex items-center justify-center text-shadow-[0_3px_5px_rgb(0_0_0_/_0.8)]">
     Hello!
   </h1>
 
   <div class="bg-gray-600 flex-1 min-w-0 overflow-clip">
-    <!--hi!-->
     <Slideshow/>
   </div>
 </section>

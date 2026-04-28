@@ -14,10 +14,10 @@ const sections = [
 
 // TODO: other pages have a different href
 const localeHref = locale === 'nl' ? '/' : `/en/`;
-const otherLocaleHref = locale !== 'nl' ? '/' : `/en/`;
+const otherLocaleHref = locale === 'nl' ? `/en/` : '/';
 ---
 
-<header class="w-fit mx-auto px-3 pt-1 sticky top-2 z-10">
+<header class="w-fit mx-auto px-3 pt-1 pb-2 sticky top-2 z-10">
   <div class="flex flex-wrap justify-center rounded-3xl bg-[#00000088] backdrop-blur-lg select-none">
     {/* Language toggle */}
     <LocaleToggle currentLocale={locale} href={otherLocaleHref} />

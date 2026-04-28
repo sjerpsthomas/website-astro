@@ -15,37 +15,36 @@ body {
 /* Text sections */
 section {
   font-family: "Manrope Variable", sans-serif;
-  @apply w-full xl:px-[15%] lg:px-[10%] px-[10%] py-10;
 
-    /* Headers, paragraphs and links */
-    h1 {
-        font-family: "Literata Variable", serif;
-        font-size: 30pt;
-    }
-    p {
-        @apply mb-2;
-    }
-    a {
-        @apply underline underline-offset-4 text-blue-500;
-    }
+  /* Headers, paragraphs and links */
+  h1 {
+    font-family: "Literata Variable", serif;
+    font-size: 30pt;
+  }
+  p {
+    @apply mb-2;
+  }
+  a {
+    @apply underline underline-offset-4 text-blue-500;
+  }
 
-    /* Lists and tables */
-    li {
-        list-style-position: outside;
-        list-style-type: disc;
-        margin-left: 1.2rem;
-        padding-left: 0.3rem;
-    }
-    table {
-        @apply my-5 w-full;
-    }
-    table, th {
-        border: 1px solid;
-    }
-    td {
-        border: 1px solid;
-        @apply px-2 py-2;
-    }
+  /* Lists and tables */
+  li {
+    list-style-position: outside;
+    list-style-type: disc;
+    margin-left: 1.2rem;
+    padding-left: 0.3rem;
+  }
+  table {
+    @apply my-5 w-full;
+  }
+  table, th {
+    border: 1px solid;
+  }
+  td {
+    border: 1px solid;
+    @apply px-2 py-2;
+  }
 }
 
 :root {

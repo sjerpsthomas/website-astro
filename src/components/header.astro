@@ -1,6 +1,6 @@
 ---
 import LocaleToggle from "@/components/locale-toggle.astro";
-import {type Locale} from "../lib/locale";
+import {type Locale} from "@lib/locale";
 
 type Props = {
   locale: Locale,
@@ -17,19 +17,17 @@ const localeHref = locale === 'nl' ? '/' : `/en/`;
 const otherLocaleHref = locale === 'nl' ? `/en/` : '/';
 ---
 
-<header class="w-fit mx-auto px-3 pt-1 pb-2 sticky top-2 z-10">
-  <div class="flex flex-wrap justify-center rounded-3xl bg-[#00000088] backdrop-blur-lg select-none">
-    {/* Language toggle */}
-    <LocaleToggle currentLocale={locale} href={otherLocaleHref} />
+<header class="w-full flex flex-wrap justify-center rounded-3xl bg-[#00000088] select-none">
+  {/* Language toggle */}
+  <LocaleToggle currentLocale={locale} href={otherLocaleHref} />
 
-    {/* Links */}
-    {sections.map((section) => 
-      <a
-        href={`${localeHref}${section.href}`}
-        class="navbar_item py-1 text-nowrap hover:scale-105 transition-transform w-[8rem] flex justify-center items-center text-center"
-      >
-        {section.title}
-      </a>
-    )}
-  </div>
+  {/* Links */}
+  {sections.map((section) =>
+    <a
+      href={`${localeHref}${section.href}`}
+      class="py-2 text-nowrap hover:scale-105 transition-transform w-[8rem] flex justify-center items-center text-center"
+    >
+      {section.title}
+    </a>
+  )}
 </header>

@@ -4,8 +4,9 @@ import Slideshow from "./slideshow.astro";
 
 type Props = {
   isEven: boolean;
+  speed: number;
 }
-const { isEven } = Astro.props;
+const { isEven, speed } = Astro.props;
 
 const oddEvenClass = isEven ? 'portfolio-section-odd' : 'portfolio-section-even';
 ---
@@ -17,7 +18,7 @@ const oddEvenClass = isEven ? 'portfolio-section-odd' : 'portfolio-section-even'
   </h1>
 
   <div class="flex-1 min-w-0 overflow-clip rounded-l-3xl">
-    <Slideshow/>
+    <Slideshow speed={speed}/>
   </div>
 </section>
 

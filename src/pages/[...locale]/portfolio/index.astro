@@ -1,7 +1,7 @@
 ---
 import PageLayout from "@layouts/page-layout.astro";
 import {DEFAULT_LOCALE, type Locale, LOCALES} from "@lib/locale.ts";
-import PortfolioComponent from "@components/portfolio-section.astro";
+import PortfolioSection from "@components/portfolio-section.astro";
 
 export function getStaticPaths() {
   return [...LOCALES.map(it => ({ params: { locale: it } })), { params: { locale: undefined } }];
@@ -19,7 +19,8 @@ const locale = (Astro.params.locale ?? DEFAULT_LOCALE) as Locale;
       </p>
     </div>
 
-    <PortfolioComponent isEven={true}/>
-    <PortfolioComponent isEven={false}/>
+    <PortfolioSection isEven={true} speed={0.8}/>
+    <PortfolioSection isEven={false} speed={1.0}/>
+    <PortfolioSection isEven={true} speed={1.2}/>
   </section>
 </PageLayout>

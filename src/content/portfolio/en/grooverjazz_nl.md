@@ -1,7 +1,7 @@
 ﻿---
 title: grooverjazz.nl
 subtitle: Website maintenance in React/TypeScript/Next.js
-image: "/portfolio/grooverjazz_nl.png"
+image: "@portfolio/grooverjazz_nl.png"
 tags:
   - in a team
   - programming

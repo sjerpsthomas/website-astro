@@ -1,7 +1,7 @@
 ﻿---
 title: Videospelletjes!
 subtitle: Game dev in GameMaker, Godot, Unity
-image: "/portfolio/video_games.png"
+image: "@portfolio/video_games.png"
 tags:
   - solo
   - programmeren

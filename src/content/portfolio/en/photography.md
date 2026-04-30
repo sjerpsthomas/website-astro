@@ -1,7 +1,7 @@
 ﻿---
 title: Photography
 subtitle: Portrait, environment and performances
-image: "/portfolio/photography.png"
+image: "@portfolio/photography.png"
 tags:
   - solo
   - hobby

@@ -1,7 +1,7 @@
 ﻿---
 title: Bar tablet
 subtitle: An app to tally beers in Kotlin/Jetpack Compose
-image: "/portfolio/bar_tablet.png"
+image: "@portfolio/bar_tablet.png"
 tags:
   - solo
   - programming

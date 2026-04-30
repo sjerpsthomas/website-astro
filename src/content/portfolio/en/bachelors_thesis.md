@@ -1,7 +1,7 @@
 ﻿---
 title: Bachelor's thesis
 subtitle: Optimal 3D depth images
-image: "/portfolio/bachelors_thesis.png"
+image: "@portfolio/bachelors_thesis.png"
 tags:
   - solo
   - programming

@@ -1,7 +1,7 @@
 ﻿---
 title: Fotografie
 subtitle: Portret, omgeving en optredens
-image: "/portfolio/photography.png"
+image: "@portfolio/photography.png"
 tags:
   - hobby
   - solo

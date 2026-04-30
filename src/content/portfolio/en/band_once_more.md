@@ -1,7 +1,7 @@
 ﻿---
 title: 'Band: Once More'
 subtitle: Jazz combo
-image: "/portfolio/band_once_more.jpg"
+image: "@portfolio/band_once_more.jpg"
 tags:
   - music
   - association

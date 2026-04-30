@@ -1,7 +1,7 @@
 ---
 title: Minor Interactive Environments
 subtitle: Projecten voor de Koninklijke Bibliotheek
-image: "/portfolio/minor_nenzo.png"
+image: "@portfolio/minor_nenzo.png"
 tags:
 - in teamverband
 - programmeren

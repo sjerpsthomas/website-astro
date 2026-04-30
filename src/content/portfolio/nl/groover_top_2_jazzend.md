@@ -1,7 +1,7 @@
 ﻿---
 title: Groover Top 2-Jazzend
 subtitle: Stemmen op 'De Lijst Der Lijsten' met Python
-image: "/portfolio/groover_top_2_jazzend.png"
+image: "@portfolio/groover_top_2_jazzend.png"
 tags:
   - solo
   - programmeren

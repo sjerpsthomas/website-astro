@@ -1,7 +1,7 @@
 ﻿---
 title: Masterscriptie
 subtitle: Onderzoeksproject in Godot/C#, React/TypeScript/Next.js, Python
-image: "/portfolio/masters_thesis.jpg"
+image: "@portfolio/masters_thesis.jpg"
 tags:
   - solo
   - programmeren

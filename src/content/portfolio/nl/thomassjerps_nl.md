@@ -1,7 +1,7 @@
 ﻿---
 title: thomassjerps.nl
 subtitle: Website in React/TypeScript/Next.js
-image: "/portfolio/thomassjerps_nl.png"
+image: "@portfolio/thomassjerps_nl.png"
 tags:
   - solo
   - programmeren

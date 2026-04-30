@@ -1,7 +1,7 @@
 ---
 title: Minor Interactive Environments
 subtitle: Projects for the Royal Library
-image: "/portfolio/minor_nenzo.png"
+image: "@portfolio/minor_nenzo.png"
 tags:
 - in teamverband
 - programmeren

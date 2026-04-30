@@ -1,7 +1,7 @@
 ﻿---
 title: 'Band: Tiewrap'
 subtitle: Jazz duo
-image: "/portfolio/band_tiewrap.jpg"
+image: "@portfolio/band_tiewrap.jpg"
 tags:
   - music
   - association

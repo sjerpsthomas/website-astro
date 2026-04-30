@@ -1,7 +1,7 @@
 ﻿---
 title: Bartablet
 subtitle: Een app om biertjes mee te bestellen in Kotlin/Jetpack Compose
-image: "/portfolio/bar_tablet.png"
+image: "@portfolio/bar_tablet.png"
 tags:
   - solo
   - programmeren

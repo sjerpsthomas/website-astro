@@ -1,7 +1,7 @@
 ﻿---
 title: Invaller/gelegenheids-gigs
 subtitle: Muziek maken voor een enkel optreden
-image: "/portfolio/substitute_occasional_gigs.jpg"
+image: "@portfolio/substitute_occasional_gigs.jpg"
 tags:
   - muziek
   - vereniging

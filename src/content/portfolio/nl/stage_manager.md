@@ -1,7 +1,7 @@
 ﻿---
 title: Stagemanager
 subtitle: Verantwoordelijkheid bij (middel-)groot muziekfestival
-image: "/portfolio/stage_manager.jpg"
+image: "@portfolio/stage_manager.jpg"
 tags:
   - in teamverband
   - vereniging

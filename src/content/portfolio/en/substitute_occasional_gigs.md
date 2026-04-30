@@ -1,7 +1,7 @@
 ﻿---
 title: Substitute/occasional gigs
 subtitle: Making music for a single performance
-image: "/portfolio/substitute_occasional_gigs.jpg"
+image: "@portfolio/substitute_occasional_gigs.jpg"
 tags:
   - music
   - association

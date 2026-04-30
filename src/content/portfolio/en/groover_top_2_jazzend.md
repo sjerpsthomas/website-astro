@@ -1,7 +1,7 @@
 ﻿---
 title: Groover Top 2-Jazzend
 subtitle: Voting for 'The List of Lists' using Python
-image: "/portfolio/groover_top_2_jazzend.png"
+image: "@portfolio/groover_top_2_jazzend.png"
 tags:
   - solo
   - programming

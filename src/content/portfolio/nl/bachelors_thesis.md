@@ -1,7 +1,7 @@
 ﻿---
 title: Bachelorscriptie
 subtitle: Optimale 3D-diepteplaatjes
-image: "/portfolio/bachelors_thesis.png"
+image: "@portfolio/bachelors_thesis.png"
 tags:
   - solo
   - programmeren

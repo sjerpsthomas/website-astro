@@ -1,7 +1,7 @@
 ﻿---
 title: Jaarboek
 subtitle: Layout en design van jaarboek
-image: "/portfolio/yearbook.png"
+image: "@portfolio/yearbook.png"
 tags:
   - solo
 links: []

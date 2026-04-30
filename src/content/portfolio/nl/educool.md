@@ -1,7 +1,7 @@
 ﻿---
 title: Educool
 subtitle: Muziekproductie
-image: "/portfolio/educool.png"
+image: "@portfolio/educool.png"
 tags:
   - muziek
   - hobby

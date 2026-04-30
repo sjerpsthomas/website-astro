@@ -1,7 +1,7 @@
 ﻿---
 title: Yearbook
 subtitle: Layout and design of yearbook
-image: "/portfolio/yearbook.png"
+image: "@portfolio/yearbook.png"
 tags:
   - solo
 links: []

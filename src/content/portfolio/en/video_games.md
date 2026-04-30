@@ -1,7 +1,7 @@
 ﻿---
 title: Video games!
 subtitle: Game dev using GameMaker, Godot, Unity
-image: "/portfolio/video_games.png"
+image: "@portfolio/video_games.png"
 tags:
   - solo
   - programming

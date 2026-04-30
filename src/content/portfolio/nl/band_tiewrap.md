@@ -1,7 +1,7 @@
 ﻿---
 title: 'Band: Tiewrap'
 subtitle: Jazzduo
-image: "/portfolio/band_tiewrap.jpg"
+image: "@portfolio/band_tiewrap.jpg"
 tags:
   - muziek
   - vereniging

@@ -1,23 +1,15 @@
 
 .embla {
   --slide-height: 18rem;
-  --slide-spacing: 1rem;
-  --slide-size: 32rem;
 }
 
 .embla__container {
   display: flex;
-  margin-left: calc(var(--slide-spacing) * -1);
 }
 
 .embla__slide {
   transform: translate3d(0, 0, 0);
-  flex: 0 0 var(--slide-size);
+  flex: 0 0 calc(var(--slide-height) * 4 / 3);
   min-width: 0;
-  padding-left: var(--slide-spacing);
-}
-
-.embla__slide__content {
-  border-radius: 1.5rem;
   height: var(--slide-height);
 }

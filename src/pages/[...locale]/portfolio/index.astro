@@ -18,7 +18,7 @@ const locale = (Astro.params.locale ?? DEFAULT_LOCALE) as Locale;
     </p>
   </section>
 
-  <PortfolioSection isEven={true} speed={0.8}/>
-  <PortfolioSection isEven={false} speed={1.0}/>
-  <PortfolioSection isEven={true} speed={1.2}/>
+  <PortfolioSection locale={locale} isEven={true} title="...programmeren:" speed={0.8} tags={["solo", "programming", "programmeren"]}/>
+  <PortfolioSection locale={locale} isEven={false} title="...m'n studentenvereniging:" speed={1.0} tags={["association", "vereniging"]}/>
+  <PortfolioSection locale={locale} isEven={true} title="...muziek:" speed={1.2} tags={["music", "muziek"]}/>
 </PageLayout>

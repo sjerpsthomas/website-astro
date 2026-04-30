@@ -1,34 +1,33 @@
 ---
 import {Image} from 'astro:assets';
-import type { ImageMetadata } from 'astro';
+import type {CollectionEntry} from "astro:content";
+import shuffle from "lodash/shuffle";
 
 type Props = {
+  items: CollectionEntry<'portfolio'>[];
   speed: number;
 }
-const { speed } = Astro.props;
+const { items, speed } = Astro.props;
 
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  '/src/assets/slideshow/*.{jpeg,jpg,png,webp}',
-  { eager: true }
-);
-
-const slides = Object.values(images).map(img =>
-  img.default
-);
+const duplicatedItems = [...items, ...items];
 ---
 
 <div class="embla select-none" data-speed={speed}>
   <div class="embla__viewport">
     <div class="embla__container">
-      {slides.map((slide, index) =>
-        <div class="embla__slide">
+      {duplicatedItems.map((item) => (
+        <div class="embla__slide relative group hover:z-10">
           <Image
-            class="embla__slide__content"
-            src={slide}
-            alt={"YISKA"}
+            class="absolute p-2 h-full rounded-3xl transition-all duration-300 group-hover:scale-105 group-hover:brightness-50"
+            src={item.data.image}
+            alt={"Portfolio item: " + item.data.title}
           />
+
+          <div class="absolute size-full flex items-center justify-center select-none pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <p class="text-white font-bold text-xl scale-75 group-hover:scale-100 text-shadow-[0_3px_5px_rgb(0_0_0_/_0.8)] transition-transform">{item.data.title}</p>
+          </div>
         </div>
-      )}
+      ))}
     </div>
   </div>
 </div>

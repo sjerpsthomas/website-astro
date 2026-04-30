@@ -1,34 +1,30 @@
 ﻿---
 import tempImage from '@assets/temp.png';
 import Slideshow from "./slideshow.astro";
+import {getCollection} from "astro:content";
+import type { CollectionEntry } from 'astro:content';
+import type {Locale} from "@lib/locale";
 
 type Props = {
+  title: string;
+  locale: Locale;
   isEven: boolean;
   speed: number;
+  tags: string[];
 }
-const { isEven, speed } = Astro.props;
+const { title, locale, isEven, speed, tags } = Astro.props;
 
-const oddEvenClass = isEven ? 'portfolio-section-odd' : 'portfolio-section-even';
+const items: CollectionEntry<'portfolio'>[] = await getCollection('portfolio', ({ id, data }) =>
+  id.startsWith(`${locale}/`) && tags.some(tag => data.tags.includes(tag)));
 ---
 
 
 <section class="flex flex-row h-[18rem] justify-stretch" style={{ backgroundImage: `url(${tempImage.src})`, backgroundSize: 'cover' }}>
-  <h1 class:list={[ "h-full w-[10rem] text-2xl font-bold flex items-center justify-center text-shadow-[0_3px_5px_rgb(0_0_0_/_0.8)]", oddEvenClass ]}>
-    Hello!
+  <h1 class="w-fit h-full text-2xl flex p-20 items-center text-shadow-[0_3px_5px_rgb(0_0_0_/_0.8)]">
+    {title}
   </h1>
 
   <div class="flex-1 min-w-0 overflow-clip rounded-l-3xl">
-    <Slideshow speed={speed}/>
+    <Slideshow items={items} speed={speed}/>
   </div>
 </section>
-
-<style>
-  .portfolio-section-odd { width: 100%; }
-  .portfolio-section-even { width: 100%; }
-
-  @media (min-width: 800px) {
-    .portfolio-section-odd { width: 30%; }
-    .portfolio-section-even { width: 40%; }
-  }
-
-</style>

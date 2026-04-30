@@ -5,8 +5,9 @@
     "baseUrl": ".",
     "paths": {
       "@*": ["./src/*"],
-      "@polaroid/*": ["src/assets/polaroid/*"],
-      "@achtergrond/*": ["src/assets/achtergrond/*"]
+
+      // Assets
+      "@portfolio/*": ["src/assets/portfolio/*"],
     }
   }
 }

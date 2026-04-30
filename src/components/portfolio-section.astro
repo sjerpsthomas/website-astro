@@ -1,30 +1,31 @@
 ﻿---
-import tempImage from '@assets/temp.png';
 import Slideshow from "./slideshow.astro";
 import {getCollection} from "astro:content";
 import type { CollectionEntry } from 'astro:content';
 import type {Locale} from "@lib/locale";
+import type {ImageMetadata} from "astro";
 
 type Props = {
   title: string;
+  background: ImageMetadata;
   locale: Locale;
-  isEven: boolean;
   speed: number;
   tags: string[];
 }
-const { title, locale, isEven, speed, tags } = Astro.props;
+const { title, background, locale, speed, tags } = Astro.props;
 
 const items: CollectionEntry<'portfolio'>[] = await getCollection('portfolio', ({ id, data }) =>
   id.startsWith(`${locale}/`) && tags.some(tag => data.tags.includes(tag)));
 ---
 
 
-<section class="flex flex-row h-[18rem] justify-stretch" style={{ backgroundImage: `url(${tempImage.src})`, backgroundSize: 'cover' }}>
+<!--TODO: on mobile, disable the gradient, make the title smaller and put slideshow under the title -->
+<section class="flex flex-row h-[18rem] justify-stretch" style={{ backgroundImage: `linear-gradient(to right,rgba(0,0,0,0.3),black), url(${background.src})`, backgroundSize: 'cover' }}>
   <h1 class="w-fit h-full text-2xl flex p-20 items-center text-shadow-[0_3px_5px_rgb(0_0_0_/_0.8)]">
     {title}
   </h1>
 
-  <div class="flex-1 min-w-0 overflow-clip rounded-l-3xl">
+  <div class="flex-1 min-w-0 overflow-clip rounded-l-4xl">
     <Slideshow items={items} speed={speed}/>
   </div>
 </section>

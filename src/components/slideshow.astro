@@ -43,7 +43,7 @@ const duplicatedItems = [...items, ...items];
     const viewportNode = emblaNode.querySelector('.embla__viewport') as HTMLElement;
 
     if (viewportNode) {
-      EmblaCarousel(viewportNode, OPTIONS, [AutoScroll({ speed: scrollSpeed })]);
+      EmblaCarousel(viewportNode, OPTIONS, [AutoScroll({ speed: scrollSpeed, startDelay: 0 })]);
     }
   });
 </script>

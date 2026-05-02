@@ -52,8 +52,14 @@ const items: CollectionEntry<'portfolio'>[] = await getCollection('portfolio', (
       clearContent(content)
 
       if (prevId !== id) {
-        content.appendChild(template.content.cloneNode(true));
+        const newNode = (template.content.cloneNode(true) as DocumentFragment).firstElementChild!;
+        console.log(newNode);
+        content.appendChild(newNode);
         content.dataset.activeId = id;
+
+        requestAnimationFrame(() => {
+          newNode.classList.add('is-visible');
+        });
       }
     });
   });

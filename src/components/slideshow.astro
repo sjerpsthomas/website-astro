@@ -1,6 +1,6 @@
 ---
-import {Image} from 'astro:assets';
-import type {CollectionEntry} from "astro:content";
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from "astro:content";
 
 type Props = {
   items: CollectionEntry<'portfolio'>[];
@@ -8,42 +8,87 @@ type Props = {
 }
 const { items, speed } = Astro.props;
 
-const duplicatedItems = [...items, ...items];
+// Process everything here
+const itemsWithContent = await Promise.all(
+  items.map(async (item) => {
+    const { Content } = await item.render();
+    return { item, Content };
+  }),
+);
+
+const duplicatedItems = [...itemsWithContent, ...itemsWithContent];
 ---
 
-<div class="embla select-none" data-speed={speed}>
-  <div class="embla__viewport">
-    <div class="embla__container">
-      {duplicatedItems.map((item) => (
-        <div class="embla__slide relative group hover:z-10">
-          <Image
-            class="absolute p-2 h-full rounded-3xl transition-all duration-300 group-hover:scale-105 group-hover:brightness-50"
-            src={item.data.image}
-            alt={"Portfolio item: " + item.data.title}
-          />
-
-          <div class="absolute size-full flex items-center justify-center select-none pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <p class="text-white font-bold text-xl scale-75 group-hover:scale-100 text-shadow-[0_3px_5px_rgb(0_0_0_/_0.8)] transition-transform">{item.data.title}</p>
-          </div>
+<div>
+  {itemsWithContent.map(({ item, Content }) => (
+    <div class="portfolio-card" data-id={item.id}>
+      <template class="" id={`portfolio-content-${item.id}`}>
+        <div class="backdrop-blur-xl bg-black/75 m-[15%] p-5 rounded-2xl shadow-2xl select-none shadow-2xl">
+          <h1>{item.data.title}</h1>
+          <Content />
         </div>
-      ))}
+      </template>
     </div>
+  ))}
+</div>
+
+<div class="slideshow select-none pointer-events-auto" data-speed={speed}>
+  <div class="flex">
+    {duplicatedItems.map(it => it.item).map((item) => (
+      <div class="slide relative group hover:cursor-pointer" data-id={item.id}>
+        <Image
+          class="image absolute h-full rounded-4xl transition-all duration-300 group-hover:scale-105 group-hover:brightness-50"
+          src={item.data.image}
+          alt={"Portfolio item: " + item.data.title}
+        />
+
+        <div class="absolute size-full flex items-center justify-center select-none pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <p class="text-white font-bold text-xl scale-75 group-hover:scale-100 text-shadow-[0_3px_5px_rgb(0_0_0_/_0.8)] transition-transform">{item.data.title}</p>
+        </div>
+      </div>
+    ))}
   </div>
 </div>
+
+<style>
+  .slide {
+    .image {
+      padding: calc(var(--spacing) * 4);
+    }
+
+    --slide-height: 25rem;
+
+    flex: 0 0 calc(var(--slide-height) * 4 / 3);
+    height: var(--slide-height);
+  }
+</style>
 
 <script>
   import EmblaCarousel from 'embla-carousel';
   import AutoScroll from 'embla-carousel-auto-scroll'
 
   const OPTIONS = { loop: true, dragFree: true };
-  const emblaNodes = document.querySelectorAll<HTMLElement>('.embla');
+  const slideshows = document.querySelectorAll<HTMLElement>('.slideshow');
 
-  emblaNodes.forEach((emblaNode) => {
-    const scrollSpeed = Number(emblaNode.dataset.speed) || 1;
-    const viewportNode = emblaNode.querySelector('.embla__viewport') as HTMLElement;
+  slideshows.forEach((slideshow) => {
+    const scrollSpeed = Number(slideshow.dataset.speed) || 1;
+    const autoScrollOptions = [AutoScroll({ speed: scrollSpeed, startDelay: 1000, direction: "backward" })];
 
-    if (viewportNode) {
-      EmblaCarousel(viewportNode, OPTIONS, [AutoScroll({ speed: scrollSpeed, startDelay: 0 })]);
+    const emblaApi = EmblaCarousel(slideshow, OPTIONS, autoScrollOptions);
+
+    const autoScroll = emblaApi.plugins().autoScroll
+    if (autoScroll) {
+      emblaApi.on('pointerUp', () => autoScroll.play())
     }
+
+    const slides = slideshow.querySelectorAll<HTMLElement>('.slide');
+    slides.forEach((slide) => {
+      slide.onclick = () => {
+        slide.dispatchEvent(new CustomEvent('portfolio-item-select', {
+          bubbles: true,
+          detail: {id: slide.getAttribute('data-id')}
+        }));
+      };
+    })
   });
 </script>

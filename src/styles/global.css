@@ -18,6 +18,7 @@ section {
   h1 {
     font-family: "Literata Variable", serif;
     font-size: 30pt;
+    margin-bottom: 0.2rem;
   }
   p {
     @apply mb-2;

@@ -20,12 +20,55 @@ const items: CollectionEntry<'portfolio'>[] = await getCollection('portfolio', (
 
 
 <!--TODO: on mobile, disable the gradient, make the title smaller and put slideshow under the title -->
-<section class="flex flex-row h-[18rem] justify-stretch" style={{ backgroundImage: `linear-gradient(to right,rgba(0,0,0,0.3),black), url(${background.src})`, backgroundSize: 'cover' }}>
-  <h1 class="w-fit h-full text-2xl flex p-20 items-center text-shadow-[0_3px_5px_rgb(0_0_0_/_0.8)]">
-    {title}
-  </h1>
+<section class="portfolio-section h-fit transition-all" style={{ backgroundImage: `linear-gradient(to right,rgba(0,0,0,0.3),black), url(${background.src})`, backgroundSize: 'cover' }}>
+  <!--Slideshow with header to the left-->
+  <div class="flex h-fit flex-row justify-stretch items-center">
+    <h1 class="size-fit mx-auto text-2xl p-20 text-shadow-[0_3px_5px_rgb(0_0_0_/_0.8)]">
+      {title}
+    </h1>
 
-  <div class="flex-1 min-w-0 overflow-clip rounded-l-4xl">
-    <Slideshow items={items} speed={speed}/>
+    <div class="flex-1 min-w-0 overflow-clip rounded-l-full relative h-full self-stretch pointer-events-none">
+      <div class="content-wrapper absolute inset-0 z-10 flex flex-col justify-center items-center">
+        <div class="content pointer-events-auto">
+        </div>
+      </div>
+
+      <Slideshow items={items} speed={speed}/>
+    </div>
   </div>
 </section>
+
+<script>
+  const sections = document.querySelectorAll<HTMLElement>('.portfolio-section');
+
+  sections.forEach(section => {
+    const content = section.querySelector('.content') as HTMLElement;
+
+    section.addEventListener('portfolio-item-select', (e) => {
+      const { id } = (e as unknown as { detail: { id: string } }).detail;
+      const prevId = content.dataset.activeId;
+      const template = document.getElementById(`portfolio-content-${id}`) as HTMLTemplateElement;
+
+      clearContent(content)
+
+      if (prevId !== id) {
+        content.appendChild(template.content.cloneNode(true));
+        content.dataset.activeId = id;
+      }
+    });
+  });
+
+  const contentWrappers = document.querySelectorAll<HTMLElement>('.content-wrapper');
+
+  contentWrappers.forEach(wrapper => {
+    wrapper.onclick = () => {
+      const content = wrapper.querySelector('.content') as HTMLElement;
+      clearContent(content);
+    };
+  });
+
+  function clearContent(content: HTMLElement) {
+    content.innerHTML = '';
+    delete content.dataset.activeId;
+  }
+</script>

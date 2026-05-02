@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from "astro:content";
+import {AstroComponentFactory} from "astro/dist/runtime/server";
 
 type Props = {
   items: CollectionEntry<'portfolio'>[];
@@ -9,7 +10,7 @@ type Props = {
 const { items, speed } = Astro.props;
 
 // Process everything here
-const itemsWithContent = await Promise.all(
+const itemsWithContent: { item: CollectionEntry<'portfolio'>, Content: AstroComponentFactory }[] = await Promise.all(
   items.map(async (item) => {
     const { Content } = await item.render();
     return { item, Content };
@@ -21,20 +22,26 @@ const duplicatedItems = [...itemsWithContent, ...itemsWithContent];
 
 <div>
   {itemsWithContent.map(({ item, Content }) => {
-    const { id, data: { title, links } } = item;
+    const { id, data: { title, image, links } } = item;
 
     return (
       <div class="portfolio-card" data-id={id}>
         <template id={`portfolio-content-${id}`}>
-          <div class="content backdrop-blur-xl bg-black/75 m-[15%] p-5 rounded-2xl shadow-2xl select-none">
-            <h1>{title}</h1>
+          <div class="content size-full px-[20%] flex items-center pointer-events-auto bg-cover bg-center backdrop-blur-xl" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.85),rgba(0,0,0,0.85)), url(${image.src})` }}>
+            <div class="flex flex-col text-shadow-[0_3px_5px_rgb(0_0_0_/_0.8)] select-none">
+              <div class="flex flex-row">
+                <div>
+                  <h1>{title}</h1>
 
-            <Content />
+                  <Content />
+                </div>
+              </div>
 
-            <div class="flex flex-row space-x-3 mt-2">
-              {links.map((link: any) => (
-                <a href={link.href} target="_blank" set:text={link.text} />
-              ))}
+              <div class="flex flex-row space-x-3 mt-2">
+                {links.map((link: any) => (
+                  <a class="font-bold italic" href={link.href} target="_blank" set:text={link.text} />
+                ))}
+              </div>
             </div>
           </div>
         </template>
@@ -76,7 +83,7 @@ const duplicatedItems = [...itemsWithContent, ...itemsWithContent];
   .content {
     opacity: 0;
     transform: translateY(10px);
-    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    transition: opacity 0.2s ease-out, transform 0.4s ease-out;
   }
 
   .content.is-visible {

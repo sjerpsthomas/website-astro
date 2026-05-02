@@ -27,9 +27,9 @@ const items: CollectionEntry<'portfolio'>[] = await getCollection('portfolio', (
       {title}
     </h1>
 
-    <div class="flex-1 min-w-0 overflow-clip rounded-l-full relative h-full self-stretch pointer-events-none">
-      <div class="content-wrapper absolute inset-0 z-10 flex flex-col justify-center items-center">
-        <div class="content pointer-events-auto">
+    <div class="flex-1 relative min-w-0 overflow-clip rounded-l-full relative h-full self-stretch pointer-events-none">
+      <div class="absolute left-0 right-0 top-0 bottom-0 z-10">
+        <div class="content-wrapper h-full">
         </div>
       </div>
 
@@ -42,35 +42,30 @@ const items: CollectionEntry<'portfolio'>[] = await getCollection('portfolio', (
   const sections = document.querySelectorAll<HTMLElement>('.portfolio-section');
 
   sections.forEach(section => {
-    const content = section.querySelector('.content') as HTMLElement;
+    const contentWrapper = section.querySelector('.content-wrapper') as HTMLElement;
+
+    contentWrapper.onclick = () => {
+      clearContent(contentWrapper);
+    }
 
     section.addEventListener('portfolio-item-select', (e) => {
       const { id } = (e as unknown as { detail: { id: string } }).detail;
-      const prevId = content.dataset.activeId;
+      const prevId = contentWrapper.dataset.activeId;
       const template = document.getElementById(`portfolio-content-${id}`) as HTMLTemplateElement;
 
-      clearContent(content)
+      clearContent(contentWrapper)
 
       if (prevId !== id) {
         const newNode = (template.content.cloneNode(true) as DocumentFragment).firstElementChild!;
         console.log(newNode);
-        content.appendChild(newNode);
-        content.dataset.activeId = id;
+        contentWrapper.appendChild(newNode);
+        contentWrapper.dataset.activeId = id;
 
         requestAnimationFrame(() => {
           newNode.classList.add('is-visible');
         });
       }
     });
-  });
-
-  const contentWrappers = document.querySelectorAll<HTMLElement>('.content-wrapper');
-
-  contentWrappers.forEach(wrapper => {
-    wrapper.onclick = () => {
-      const content = wrapper.querySelector('.content') as HTMLElement;
-      clearContent(content);
-    };
   });
 
   function clearContent(content: HTMLElement) {

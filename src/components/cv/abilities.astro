@@ -1,6 +1,7 @@
 ﻿---
-import {Locale} from "@lib/locale";
+import type {Locale} from "@lib/locale";
 import BulletPointList from "./bullet-point-list.astro";
+import {getDictKeys} from "@lib/utils";
 
 type Props = {
   locale: Locale;
@@ -101,9 +102,7 @@ const D = {
 
 const dict = D[locale];
 
-export function getDictKeys<T>(obj: T) {
-  return Object.keys(obj as Record<string, unknown>) as Array<keyof T>;
-}
+
 ---
 
 <div class="">

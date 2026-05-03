@@ -1,6 +1,7 @@
 ---
 import {type Locale} from "@lib/locale";
 import shirt from '@assets/shirt-2.png';
+import {getDictKeys} from "@lib/utils";
 
 type Props = {
   locale: Locale,
@@ -25,10 +26,6 @@ const pages = {
 // TODO: other pages have a different href
 const localeHref = locale === 'nl' ? '/' : `/en/`;
 const otherLocaleHref = locale === 'nl' ? `/en/` : '/';
-
-export function getDictKeys<T>(obj: T) {
-  return Object.keys(obj as Record<string, unknown>) as Array<keyof T>;
-}
 
 const currentPath = Astro.url.pathname;
 const currentPage = ("/" + currentPath).split('/').at(-1)

@@ -14,6 +14,8 @@ type Props = {
 }
 const { title, background, locale, speed, tags } = Astro.props;
 
+const iLoveText = { nl: "ik hou van", en: "i love" }
+
 const items: CollectionEntry<'portfolio'>[] = await getCollection('portfolio', ({ id, data }) =>
   id.startsWith(`${locale}/`) && tags.some(tag => data.tags.includes(tag)));
 ---
@@ -23,9 +25,12 @@ const items: CollectionEntry<'portfolio'>[] = await getCollection('portfolio', (
 <section class="portfolio-section h-fit transition-all" style={{ backgroundImage: `linear-gradient(to right,rgba(0,0,0,0.3),black), url(${background.src})`, backgroundSize: 'cover' }}>
   <!--Slideshow with header to the left-->
   <div class="flex h-fit flex-row justify-stretch items-center">
-    <h1 class="size-fit mx-auto text-2xl p-20 text-shadow-large">
-      {title}
-    </h1>
+    <div class="m-auto p-20 text-shadow-large">
+      <p class="!-mb-3">{iLoveText[locale]}</p>
+      <h1 class="size-fit text-2xl">
+        {title}:
+      </h1>
+    </div>
 
     <div class="flex-1 relative min-w-0 overflow-clip rounded-l-full relative h-full self-stretch pointer-events-none">
       <div class="absolute left-0 right-0 top-0 bottom-0 z-10">

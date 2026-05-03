@@ -1,0 +1,14 @@
+﻿---
+type Props = {
+  content: string[]
+}
+
+const { content } = Astro.props;
+---
+
+
+<ul>
+  {content.map((item, i) =>
+    <li key={i}>{item}</li>
+  )}
+</ul>

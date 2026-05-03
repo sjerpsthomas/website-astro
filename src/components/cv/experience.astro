@@ -158,13 +158,13 @@ const D = {
 const dict = D[locale];
 ---
 
-<div class="m-10">
+<div class="">
   <h1>{dict.title}</h1>
 
   <section>
     {
       dict.experiences.map((experience, i) =>
-        <div key={i} class='mb-3 md:mb-5'>
+        <div class='mb-3 md:mb-5'>
           <h2>{experience.title}</h2>
           <p class='font-medium italic pl-5 mb-1 md:mb-2'>{experience.company} ({experience.timespan})</p>
 

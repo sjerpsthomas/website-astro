@@ -53,15 +53,18 @@ const D = {
 const dict = D[locale];
 ---
 
-<div class="m-10">
+<div class="">
   <h1>{dict.title}</h1>
 
   <section class='flex flex-col gap-y-3 print:gap-y-1'>
     {
       dict.educations.map((education, i) =>
-        <div key={i}>
+        <div>
           <h2>{education.title}</h2>
-          <p class='font-medium italic pl-5 mb-1 md:mb-2'>{education.location} ({education.timespan})</p>
+          <div class='font-medium italic pl-5 mb-1 md:mb-2'>
+            <p class="!mb-0">{education.location}</p>
+            <p>({education.timespan})</p>
+          </div>
         </div>
       )
     }

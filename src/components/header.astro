@@ -23,7 +23,6 @@ const pages = {
   },
 }
 
-// TODO: other pages have a different href
 const localeHref = locale === 'nl' ? '/' : `/en/`;
 const otherLocaleHref = locale === 'nl' ? `/en/` : '/';
 
@@ -34,10 +33,10 @@ console.log(currentPage);
 
 
 <header class="flex flex-row items-center justify-center space-x-10 bg-gray-900 py-10 bg-center bg-cover" style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.0),rgba(0,0,0,0.4)), url(${shirt.src})` }}>
-  <a href={otherLocaleHref + currentPage} class="header-button flex flex-row items-end space-x-1">
-    <span class={locale == "nl" ? "font-bold" : "font-light !text-lg"}>NL</span>
-    <span class="font-light !text-lg">/</span>
-    <span class={locale == "en" ? "font-bold" : "font-light !text-lg"}>EN</span>
+  <a href={otherLocaleHref + currentPage} class="header-button flex flex-row items-center space-x-1 !px-5 !pb-2">
+    <span class={locale == "nl" ? "font-bold !text-lg" : "font-light opacity-70 !text-sm"}>NL</span>
+    <span class="font-light opacity-50 !text-sm">/</span>
+    <span class={locale == "en" ? "font-bold !text-lg" : "font-light opacity-70 !text-sm"}>EN</span>
   </a>
 
   {getDictKeys(pages).map((pageName) => {
@@ -66,7 +65,7 @@ console.log(currentPage);
 <style>
   @import '@styles/global.css';
   a {
-    @apply bg-black text-center rounded-full px-10 py-2 pb-3 text-2xl font-bold !text-white !no-underline;
+    @apply bg-black text-center rounded-full px-10 py-2 pb-3 text-2xl font-bold !text-white !no-underline hover:scale-105 hover:shadow-md transition-all;
     font-family: var(--font-thomas-title), serif;
   }
 </style>

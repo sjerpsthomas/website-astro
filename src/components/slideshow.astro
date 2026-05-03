@@ -28,7 +28,7 @@ const duplicatedItems = [...itemsWithContent, ...itemsWithContent];
       <div class="portfolio-card" data-id={id}>
         <template id={`portfolio-content-${id}`}>
           <div class="content size-full px-[20%] flex items-center pointer-events-auto bg-cover bg-center backdrop-blur-xl" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.85),rgba(0,0,0,0.85)), url(${image.src})` }}>
-            <div class="flex flex-col text-shadow-[0_3px_5px_rgb(0_0_0_/_0.8)] select-none">
+            <div class="flex flex-col text-shadow-large select-none">
               <div class="flex flex-row">
                 <div>
                   <h1>{title}</h1>
@@ -61,7 +61,7 @@ const duplicatedItems = [...itemsWithContent, ...itemsWithContent];
         />
 
         <div class="absolute size-full flex items-center justify-center select-none pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <p class="text-white font-bold text-xl scale-75 group-hover:scale-100 text-shadow-[0_3px_5px_rgb(0_0_0_/_0.8)] transition-transform">{item.data.title}</p>
+          <p class="text-white font-bold text-xl scale-75 group-hover:scale-100 text-shadow-large transition-transform">{item.data.title}</p>
         </div>
       </div>
     ))}

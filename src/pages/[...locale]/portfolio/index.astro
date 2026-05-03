@@ -15,9 +15,9 @@ const locale = (Astro.params.locale ?? DEFAULT_LOCALE) as Locale;
 ---
 
 <PageLayout locale={locale}>
-  <section class="flex flex-col bg-gray-900 text-center py-10 bg-center bg-cover text-shadow-[0_3px_5px_rgb(0_0_0_/_0.8)]" style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.0),rgba(0,0,0,0.4)), url(${shirt.src})` }}>
-    <h1>Portfolio</h1>
-    <p>
+  <section class="flex flex-col bg-gray-900 text-center py-10 bg-center bg-cover" style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.0),rgba(0,0,0,0.4)), url(${shirt.src})` }}>
+    <h1 class="stroke-big">Portfolio</h1>
+    <p class="stroke-small">
       A small intro paragraph.
     </p>
   </section>

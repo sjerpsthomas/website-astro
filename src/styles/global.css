@@ -55,6 +55,20 @@ section {
   }
 }
 
+@theme {
+  --text-shadow-large: 0 3px 5px rgb(0 0 0 / 0.8);
+}
+
+.stroke-big {
+  -webkit-text-stroke: 6px black;
+  paint-order: stroke fill;
+}
+
+.stroke-small {
+  -webkit-text-stroke: 4px black;
+  paint-order: stroke fill;
+}
+
 :root {
   --color-thomas-white: #ffffff;
   --color-thomas-black: #000000;

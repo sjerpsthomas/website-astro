@@ -6,8 +6,12 @@ footer {
 
 /* Body text color */
 body {
-  color: #ffffff;
-  background-color: #000000;
+  color: white;
+  background-color: black;
+
+  @media print {
+    color: black
+  }
 }
 
 /* Text sections */

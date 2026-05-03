@@ -15,12 +15,12 @@ body {
 }
 
 /* Text sections */
-section {
-  font-family: "Manrope Variable", sans-serif;
+section, header {
+  font-family: var(--font-thomas-sans), sans-serif;
 
   /* Headers, paragraphs and links */
   h1 {
-    font-family: "Literata Variable", serif;
+    font-family: var(--font-thomas-title), serif;
     font-size: 30pt;
     margin-bottom: 0.1rem;
   }
@@ -69,7 +69,14 @@ section {
   paint-order: stroke fill;
 }
 
+.font-title {
+  font-family: var(--font-thomas-title), serif;
+}
+
 :root {
   --color-thomas-white: #ffffff;
   --color-thomas-black: #000000;
+
+  --font-thomas-title: "Literata Variable", serif;
+  --font-thomas-sans: "Manrope Variable", sans-serif;
 }

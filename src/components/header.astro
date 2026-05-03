@@ -1,34 +1,75 @@
 ---
-import LocaleToggle from "@/components/locale-toggle.astro";
 import {type Locale} from "@lib/locale";
+import shirt from '@assets/shirt-2.png';
 
 type Props = {
   locale: Locale,
 }
 const { locale } = Astro.props;
 
-const sections = [
-  { title: "Home", href: "" },
-  { title: "CV", href: "cv" },
-  { title: "Portfolio", href: "portfolio" },
-]
+const pages = {
+  "": {
+    nl: { title: "HOME", href: "", description: "Beschrijving voor 'home'." },
+    en: { title: "HOME", href: "", description: "Description for 'home'." },
+  },
+  cv: {
+    nl: { title: "CV", href: "cv", description: "Beschrijving voor 'cv'." },
+    en: { title: "CV", href: "cv", description: "Description for 'cv'." },
+  },
+  portfolio: {
+    nl: { title: "PORTFOLIO", href: "portfolio", description: "Beschrijving voor 'portfolio'." },
+    en: { title: "PORTFOLIO", href: "portfolio", description: "Description for 'portfolio'." },
+  },
+}
 
 // TODO: other pages have a different href
 const localeHref = locale === 'nl' ? '/' : `/en/`;
 const otherLocaleHref = locale === 'nl' ? `/en/` : '/';
+
+export function getDictKeys<T>(obj: T) {
+  return Object.keys(obj as Record<string, unknown>) as Array<keyof T>;
+}
+
+const currentPath = Astro.url.pathname;
+const currentPage = ("/" + currentPath).split('/').at(-1)
+console.log(currentPage);
 ---
 
-<header class="w-full flex flex-wrap justify-center rounded-3xl bg-[#00000088] select-none">
-  {/* Language toggle */}
-  <LocaleToggle currentLocale={locale} href={otherLocaleHref} />
 
-  {/* Links */}
-  {sections.map((section) =>
-    <a
-      href={`${localeHref}${section.href}`}
-      class="py-2 text-nowrap hover:scale-105 transition-transform w-[8rem] flex justify-center items-center text-center"
-    >
-      {section.title}
-    </a>
-  )}
+<header class="flex flex-row items-center justify-center space-x-10 bg-gray-900 py-10 bg-center bg-cover" style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.0),rgba(0,0,0,0.4)), url(${shirt.src})` }}>
+  <a href={otherLocaleHref + currentPage} class="header-button flex flex-row items-end space-x-1">
+    <span class={locale == "nl" ? "font-bold" : "font-light !text-lg"}>NL</span>
+    <span class="font-light !text-lg">/</span>
+    <span class={locale == "en" ? "font-bold" : "font-light !text-lg"}>EN</span>
+  </a>
+
+  {getDictKeys(pages).map((pageName) => {
+    const pageDict = pages[pageName];
+
+    if (pageName == currentPage) {
+      return (
+        <div class="bg-black text-center rounded-3xl px-8 py-2 pb-3 shadow-xl">
+          <h1 class="!text-6xl !mb-2 font-black">{pageDict[locale].title}</h1>
+          <p>
+            {pageDict[locale].description}
+          </p>
+        </div>
+      );
+    }
+
+    return (
+      <a href={localeHref + pageDict[locale].href} class="header-button">
+        <span>{pageDict[locale].title}</span>
+      </a>
+    );
+  })}
 </header>
+
+
+<style>
+  @import '@styles/global.css';
+  a {
+    @apply bg-black text-center rounded-full px-10 py-2 pb-3 text-2xl font-bold !text-white !no-underline;
+    font-family: var(--font-thomas-title), serif;
+  }
+</style>

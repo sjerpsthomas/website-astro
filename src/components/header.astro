@@ -1,7 +1,6 @@
 ---
 import {type Locale} from "@lib/locale";
-import shirt from '@assets/shirt-2.png';
-import {getDictKeys} from "@lib/utils";
+import shirtBg from '@assets/shirt_bg.png';
 
 type Props = {
   locale: Locale,
@@ -30,7 +29,7 @@ console.log(currentPage);
 ---
 
 
-<header class="print:hidden flex flex-wrap lg:flex-row flex-col items-center justify-center bg-gray-900 py-10 bg-center bg-cover" style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.0),rgba(0,0,0,0.4)), url(${shirt.src})` }}>
+<header class="print:hidden flex flex-wrap lg:flex-row flex-col items-center justify-center bg-gray-900 py-10 select-none bg-center bg-cover" style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.0),rgba(0,0,0,0.4)), url(${shirtBg.src})` }}>
   <a href={otherLocaleHref + currentPage} class="header-item flex flex-row items-center space-x-1 !px-5 !pb-2">
     <span class={locale == "nl" ? "font-bold lg:!text-lg !text-sm" : "font-light opacity-70 !text-sm"}>NL</span>
     <span class="font-light opacity-50 !text-sm">/</span>

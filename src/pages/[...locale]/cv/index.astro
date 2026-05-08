@@ -4,6 +4,8 @@ import {DEFAULT_LOCALE, type Locale, LOCALES} from "@lib/locale.ts";
 import Education from "./cv-education.astro";
 import Abilities from "./cv-abilities.astro";
 import Experience from "./cv-experience.astro";
+import {Image} from "astro:assets";
+import profilePhoto from '@assets/profile_photo.jpg';
 
 export function getStaticPaths() {
   return [...LOCALES.map(it => ({params: {locale: it}})), {params: {locale: undefined}}];
@@ -13,14 +15,14 @@ const locale = (Astro.params.locale ?? DEFAULT_LOCALE) as Locale;
 
 const dict = {
   nl: {
-    factDigital: "Leuk feitje: als je deze pagina print, krijg je mijn echte CV!",
+    factDigital: ["Leuk feitje: als je deze pagina ", ", krijg je mijn echte CV!"],
     factPrint: [
       "Leuk feitje: deze pagina is een afdruk van thomassjerps.nl/cv!",
       "Op deze site kun je ook mijn portfolio vinden, en meer."
     ]
   },
   en: {
-    factDigital: "Fun fact: if you print this page, you get my actual CV!",
+    factDigital: ["Fun fact: if you ", " this page, you get my actual CV!"],
     factPrint: [
       "Fun fact: this page is a print-out of thomassjerps.nl/cv!",
       "On this site, you can also find my portfolio and more."
@@ -31,23 +33,35 @@ const dict = {
 
 <PageLayout locale={locale}>
   <section>
-    <div class='flex not-print:p-10 not-print:w-[70%] flex-wrap space-x-20 justify-stretch items-stretch mx-auto'>
-      {/* Education / Abilities */}
+    <!--Printout comment-->
+    <div class='print:hidden text-center not-print:my-6 italic'>
+      <p>{dict.factDigital[0]}<a onclick="window.print()">print</a>{dict.factDigital[1]}</p>
+    </div>
+
+    <!--Main photo-->
+    <div class="not-print:hidden flex flex-row items-center">
+      <Image class="size-[9rem] m-5" src={profilePhoto} alt="Thomas Sjerps"/>
+
+      <div class="flex flex-col">
+        <p class="text-4xl font-bold">Thomas Sjerps</p>
+        <p>LinkedIn: /in/thomas-sjerps</p>
+        <p>GitHub: /sjerpsthomas</p>
+
+        <p class="italic">{dict.factPrint[0]}<br/>{dict.factPrint[1]}</p>
+      </div>
+    </div>
+
+    <div class='flex not-print:w-[50%] print:w-[95%] flex-wrap space-x-20 justify-stretch items-stretch mx-auto'>
+      <!--Education / Abilities-->
       <div class='flex-1 flex flex-col space-y-10 print:w-[40%]'>
         <Education locale={locale}/>
         <Abilities locale={locale}/>
       </div>
 
-      {/* Abilities */}
+      <!--Experience-->
       <div class='flex-1/4 print:w-[60%]'>
         <Experience locale={locale}/>
       </div>
-    </div>
-
-    {/* Printout comment */}
-    <div class='text-center mt-6 mb-3 italic'>
-      <p class='block print:hidden'>{dict.factDigital}</p>
-      <p class='hidden print:block'>{dict.factPrint[0]}<br/>{dict.factPrint[1]}</p>
     </div>
   </section>
 </PageLayout>

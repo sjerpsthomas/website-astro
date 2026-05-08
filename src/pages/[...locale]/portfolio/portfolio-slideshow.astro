@@ -36,7 +36,7 @@ const duplicatedItems = [...itemsWithContent, ...itemsWithContent];
 
                   <div class="flex flex-wrap space-x-3 mt-2">
                     {links.map((link: any) => (
-                      <a class="font-bold italic" href={link.href} target="_blank" set:text={link.text} />
+                      <a href={link.href} target="_blank" set:text={link.text} />
                     ))}
                   </div>
                 </div>

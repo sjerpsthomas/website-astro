@@ -11,7 +11,7 @@ export function getStaticPaths() {
 
 const locale = (Astro.params.locale ?? DEFAULT_LOCALE) as Locale;
 
-const D = {
+const dict = {
   nl: {
     factDigital: "Leuk feitje: als je deze pagina print, krijg je mijn echte CV!",
     factPrint: [
@@ -26,16 +26,14 @@ const D = {
       "On this site, you can also find my portfolio and more."
     ]
   },
-}
-
-const dict = D[locale];
+}[locale];
 ---
 
 <PageLayout locale={locale}>
   <section>
-    <div class='flex p-10 flex-wrap space-x-20 justify-stretch items-stretch w-[70%] mx-auto'>
+    <div class='flex not-print:p-10 not-print:w-[70%] flex-wrap space-x-20 justify-stretch items-stretch mx-auto'>
       {/* Education / Abilities */}
-      <div class='flex-1 flex flex-col space-y-20 print:w-[40%]'>
+      <div class='flex-1 flex flex-col space-y-10 print:w-[40%]'>
         <Education locale={locale}/>
         <Abilities locale={locale}/>
       </div>
@@ -46,11 +44,10 @@ const dict = D[locale];
       </div>
     </div>
 
+    {/* Printout comment */}
+    <div class='text-center mt-6 mb-3 italic'>
+      <p class='block print:hidden'>{dict.factDigital}</p>
+      <p class='hidden print:block'>{dict.factPrint[0]}<br/>{dict.factPrint[1]}</p>
+    </div>
   </section>
-
-  {/* Printout comment */}
-  <div class='text-center text-sm mt-6 mb-3 italic'>
-    <p class='block print:hidden'>{dict.factDigital}</p>
-    <p class='hidden print:block'>{dict.factPrint[0]}<br/>{dict.factPrint[1]}</p>
-  </div>
 </PageLayout>

@@ -1,5 +1,5 @@
 ﻿---
-import Slideshow from "./slideshow.astro";
+import Slideshow from "./portfolio-slideshow.astro";
 import {getCollection} from "astro:content";
 import type { CollectionEntry } from 'astro:content';
 import type {Locale} from "@lib/locale";
@@ -24,15 +24,15 @@ const items: CollectionEntry<'portfolio'>[] = await getCollection('portfolio', (
 <!--TODO: on mobile, disable the gradient, make the title smaller and put slideshow under the title -->
 <section class="portfolio-section h-fit transition-all" style={{ backgroundImage: `linear-gradient(to right,rgba(0,0,0,0.3),black), url(${background.src})`, backgroundSize: 'cover' }}>
   <!--Slideshow with header to the left-->
-  <div class="flex h-fit flex-row justify-stretch items-center">
-    <div class="m-auto p-20 text-shadow-large">
-      <p class="!-mb-3">{iLoveText[locale]}</p>
-      <h1 class="size-fit text-2xl">
+  <div class="flex h-fit lg:flex-row flex-col justify-stretch lg:items-center">
+    <div class="lg:p-20 p-6 text-shadow-large">
+      <p class="!-mb-1">{iLoveText[locale]}</p>
+      <h1 class="size-fit lg:!text-4xl !text-3xl">
         {title}:
       </h1>
     </div>
 
-    <div class="flex-1 relative min-w-0 overflow-clip rounded-l-full relative h-full self-stretch pointer-events-none">
+    <div class="flex-1 relative min-w-0 overflow-clip lg:rounded-l-full relative h-full self-stretch pointer-events-none">
       <div class="absolute left-0 right-0 top-0 bottom-0 z-10">
         <div class="content-wrapper h-full">
         </div>

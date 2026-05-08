@@ -1,5 +1,5 @@
 ﻿---
-import {Locale} from "@lib/locale";
+import type {Locale} from "@lib/locale";
 
 type Props = {
   locale: Locale;
@@ -7,7 +7,7 @@ type Props = {
 
 const { locale } = Astro.props;
 
-const D = {
+const dict = {
   nl: {
     title: "Opleidingen",
     educations: [
@@ -48,9 +48,7 @@ const D = {
       },
     ],
   },
-};
-
-const dict = D[locale];
+}[locale];
 ---
 
 <div class="">

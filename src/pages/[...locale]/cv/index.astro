@@ -1,9 +1,9 @@
 ---
 import PageLayout from "@layouts/page-layout.astro";
 import {DEFAULT_LOCALE, type Locale, LOCALES} from "@lib/locale.ts";
-import Education from "@components/cv/education.astro";
-import Abilities from "@components/cv/abilities.astro";
-import Experience from "@components/cv/experience.astro";
+import Education from "./cv-education.astro";
+import Abilities from "./cv-abilities.astro";
+import Experience from "./cv-experience.astro";
 
 export function getStaticPaths() {
   return [...LOCALES.map(it => ({params: {locale: it}})), {params: {locale: undefined}}];

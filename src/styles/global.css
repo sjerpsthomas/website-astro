@@ -18,10 +18,20 @@ body {
 section, header {
   font-family: var(--font-thomas-sans), sans-serif;
 
+  font-size: 10pt;
+  @media (width >= 64rem) {
+    font-size: 13pt;
+  }
+
   /* Headers, paragraphs and links */
   h1 {
     font-family: var(--font-thomas-title), serif;
-    font-size: 30pt;
+
+    font-size: 20pt;
+    @media (width >= 64rem) {
+      font-size: 30pt;
+    }
+
     margin-bottom: 0.1rem;
   }
   h2 {

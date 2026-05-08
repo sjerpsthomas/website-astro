@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from "astro:content";
-import {AstroComponentFactory} from "astro/dist/runtime/server";
+import type {AstroComponentFactory} from "astro/dist/runtime/server";
 
 type Props = {
   items: CollectionEntry<'portfolio'>[];
@@ -9,7 +9,6 @@ type Props = {
 }
 const { items, speed } = Astro.props;
 
-// Process everything here
 const itemsWithContent: { item: CollectionEntry<'portfolio'>, Content: AstroComponentFactory }[] = await Promise.all(
   items.map(async (item) => {
     const { Content } = await item.render();
@@ -27,20 +26,20 @@ const duplicatedItems = [...itemsWithContent, ...itemsWithContent];
     return (
       <div class="portfolio-card" data-id={id}>
         <template id={`portfolio-content-${id}`}>
-          <div class="content size-full px-[20%] flex items-center pointer-events-auto bg-cover bg-center backdrop-blur-xl" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.85),rgba(0,0,0,0.85)), url(${image.src})` }}>
-            <div class="flex flex-col text-shadow-large select-none">
-              <div class="flex flex-row">
+          <div class="content size-full flex pointer-events-auto bg-cover bg-center backdrop-blur-xl" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.85),rgba(0,0,0,0.85)), url(${image.src})` }}>
+            <div class="flex flex-col overflow-y-auto text-shadow-large select-none mx-auto">
+              <div class="flex flex-row lg:px-[20%] px-5 not-lg:py-5 my-auto">
                 <div>
                   <h1>{title}</h1>
 
                   <Content />
-                </div>
-              </div>
 
-              <div class="flex flex-row space-x-3 mt-2">
-                {links.map((link: any) => (
-                  <a class="font-bold italic" href={link.href} target="_blank" set:text={link.text} />
-                ))}
+                  <div class="flex flex-wrap space-x-3 mt-2">
+                    {links.map((link: any) => (
+                      <a class="font-bold italic" href={link.href} target="_blank" set:text={link.text} />
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -61,7 +60,7 @@ const duplicatedItems = [...itemsWithContent, ...itemsWithContent];
         />
 
         <div class="absolute size-full flex items-center justify-center select-none pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <p class="text-white font-bold text-xl scale-75 group-hover:scale-100 text-shadow-large transition-transform">{item.data.title}</p>
+          <p class="text-white font-bold lg:!text-xl text-lg scale-75 group-hover:scale-100 text-shadow-large transition-transform">{item.data.title}</p>
         </div>
       </div>
     ))}
@@ -74,7 +73,10 @@ const duplicatedItems = [...itemsWithContent, ...itemsWithContent];
       padding: calc(var(--spacing) * 4);
     }
 
-    --slide-height: 25rem;
+    --slide-height: 15rem;
+    @media (width >= 64rem) {
+      --slide-height: 25rem;
+    }
 
     flex: 0 0 calc(var(--slide-height) * 4 / 3);
     height: var(--slide-height);

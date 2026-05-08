@@ -2,10 +2,7 @@
 title: grooverjazz.nl
 subtitle: Onderhoud voor website in React/TypeScript/Next.js
 image: "@portfolio/grooverjazz_nl.png"
-tags:
-  - in teamverband
-  - programmeren
-  - vereniging
+category: programming
 links:
   - text: grooverjazz.nl
     href: https://www.grooverjazz.nl/

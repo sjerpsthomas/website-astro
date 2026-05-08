@@ -2,10 +2,7 @@
 title: Master's thesis
 subtitle: Research project using Godot/C#, React/TypeScript/Next.js, Python
 image: "@portfolio/masters_thesis.jpg"
-tags:
-  - solo
-  - programming
-  - university
+category: programming
 links:
   - text: Repository
     href: https://github.com/sjerpsthomas/miles

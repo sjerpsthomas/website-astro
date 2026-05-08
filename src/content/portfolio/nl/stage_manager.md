@@ -2,9 +2,7 @@
 title: Stagemanager
 subtitle: Verantwoordelijkheid bij (middel-)groot muziekfestival
 image: "@portfolio/stage_manager.jpg"
-tags:
-  - in teamverband
-  - vereniging
+category: association
 links:
   - text: justjazzfestival.nl
     href: https://justjazzfestival.nl/

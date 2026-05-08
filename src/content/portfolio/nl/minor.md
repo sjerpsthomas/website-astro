@@ -2,10 +2,7 @@
 title: Minor Interactive Environments
 subtitle: Projecten voor de Koninklijke Bibliotheek
 image: "@portfolio/minor_nenzo.png"
-tags:
-- in teamverband
-- programmeren
-- universiteit
+category: programming
 links:
 - text: Poster
   href: https://www.thomassjerps.nl/portfolio/minor_nenzo.pdf

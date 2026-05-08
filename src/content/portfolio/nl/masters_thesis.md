@@ -2,10 +2,7 @@
 title: Masterscriptie
 subtitle: Onderzoeksproject in Godot/C#, React/TypeScript/Next.js, Python
 image: "@portfolio/masters_thesis.jpg"
-tags:
-  - solo
-  - programmeren
-  - universiteit
+category: programming
 links:
   - text: Repository
     href: https://github.com/sjerpsthomas/miles

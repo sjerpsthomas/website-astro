@@ -2,9 +2,7 @@
 title: Groover Real Book
 subtitle: Completely revised repertoire book in MuseScore
 image: "@portfolio/groover_real_book.png"
-tags:
-  - solo
-  - association
+category: association
 links:
   - text: Reveal video
     href: https://youtu.be/Oge_-XNskw8

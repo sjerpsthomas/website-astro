@@ -2,9 +2,7 @@
 title: Groover Real Book
 subtitle: Volledig herzien repertoireboek in MuseScore
 image: "@portfolio/groover_real_book.png"
-tags:
-  - solo
-  - vereniging
+category: association
 links:
   - text: Reveal-video
     href: https://youtu.be/Oge_-XNskw8

@@ -2,10 +2,7 @@
 title: Groover Top 2-Jazzend
 subtitle: Stemmen op 'De Lijst Der Lijsten' met Python
 image: "@portfolio/groover_top_2_jazzend.png"
-tags:
-  - solo
-  - programmeren
-  - vereniging
+category: association
 links:
   - text: Top 2-Jazzend
     href: https://open.spotify.com/playlist/0l2uxk9gEZIPveqsheEwJ1

@@ -2,9 +2,7 @@
 title: Substitute/occasional gigs
 subtitle: Making music for a single performance
 image: "@portfolio/substitute_occasional_gigs.jpg"
-tags:
-  - music
-  - association
+category: music
 links: []
 date: 2024-11-08
 ---

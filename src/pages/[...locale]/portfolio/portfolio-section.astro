@@ -10,14 +10,14 @@ type Props = {
   background: ImageMetadata;
   locale: Locale;
   speed: number;
-  tags: string[];
+  category: string;
 }
-const { title, background, locale, speed, tags } = Astro.props;
+const { title, background, locale, speed, category } = Astro.props;
 
 const iLoveText = { nl: "ik hou van", en: "i love" }
 
 const items: CollectionEntry<'portfolio'>[] = await getCollection('portfolio', ({ id, data }) =>
-  id.startsWith(`${locale}/`) && tags.some(tag => data.tags.includes(tag)));
+  id.startsWith(`${locale}/`) && category == data.category);
 ---
 
 

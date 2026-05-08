@@ -2,16 +2,13 @@
 title: Videospelletjes!
 subtitle: Game dev in GameMaker, Godot, Unity
 image: "@portfolio/video_games.png"
-tags:
-  - solo
-  - programmeren
-  - hobby
+category: programming
 links:
   - text: itch.io
     href: https://sjerpsthomas.itch.io/
   - text: GM48 (GameMaker game jam)
     href: https://gm48.net/user/2/thomas-sjerps
-  - text: Videogame uni-projecct
+  - text: Videogame uni-project
     href: https://www.researchgate.net/publication/374175098
   - text: Videogame voor vereniging
     href: https://sjerpsthomas.github.io/

@@ -2,10 +2,7 @@
 title: grooverjazz.nl
 subtitle: Website maintenance in React/TypeScript/Next.js
 image: "@portfolio/grooverjazz_nl.png"
-tags:
-  - in a team
-  - programming
-  - association
+category: programming
 links:
   - text: grooverjazz.nl
     href: https://www.grooverjazz.nl/

@@ -2,9 +2,7 @@
 title: thomassjerps.nl
 subtitle: Website using React/TypeScript/Next.js
 image: "@portfolio/thomassjerps_nl.png"
-tags:
-  - solo
-  - programming
+category: programming
 links:
   - text: Repository
     href: https://www.github.com/sjerpsthomas/website

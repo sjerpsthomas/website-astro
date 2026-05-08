@@ -2,10 +2,7 @@
 title: Video games!
 subtitle: Game dev using GameMaker, Godot, Unity
 image: "@portfolio/video_games.png"
-tags:
-  - solo
-  - programming
-  - hobby
+category: programming
 links:
   - text: itch.io
     href: https://sjerpsthomas.itch.io/

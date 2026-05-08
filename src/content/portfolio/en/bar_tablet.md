@@ -2,10 +2,7 @@
 title: Bar tablet
 subtitle: An app to tally beers in Kotlin/Jetpack Compose
 image: "@portfolio/bar_tablet.png"
-tags:
-  - solo
-  - programming
-  - association
+category: programming
 links:
   - text: Repository
     href: https://github.com/grooverjazz/bar

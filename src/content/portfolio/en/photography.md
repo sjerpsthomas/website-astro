@@ -2,9 +2,7 @@
 title: Photography
 subtitle: Portrait, environment and performances
 image: "@portfolio/photography.png"
-tags:
-  - solo
-  - hobby
+category: association
 links: []
 date: 2022-09-01
 ---

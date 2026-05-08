@@ -11,9 +11,9 @@ export function getStaticPaths() {
 }
 
 const sections = [
-  { title: { nl: "programmeren", en: "programming" }, bg: bgProgramming, speed: 0.8, tags: ["solo", "programmeren", "progarmming"] },
-  { title: { nl: "m'n studentenvereniging", en: "my association" }, bg: bgGroover, speed: 1.0, tags: ["vereniging", "association"] },
-  { title: { nl: "muziek", en: "music" }, bg: bgMusic, speed: 1.2, tags: ["muziek", "music"] },
+  { title: { nl: "programmeren", en: "programming" }, bg: bgProgramming, speed: 0.8, category: "programming" },
+  { title: { nl: "m'n studentenvereniging", en: "my association" }, bg: bgGroover, speed: 1.0, category: "association" },
+  { title: { nl: "muziek", en: "music" }, bg: bgMusic, speed: 1.2, category: "music" },
 ]
 
 const locale = (Astro.params.locale ?? DEFAULT_LOCALE) as Locale;
@@ -21,7 +21,7 @@ const locale = (Astro.params.locale ?? DEFAULT_LOCALE) as Locale;
 
 <PageLayout locale={locale}>
   {sections.map(section => (
-    <PortfolioSection locale={locale} background={section.bg} title={section.title[locale]} speed={section.speed} tags={section.tags}/>
+    <PortfolioSection locale={locale} background={section.bg} title={section.title[locale]} speed={section.speed} category={section.category}/>
   ))}
 </PageLayout>
 

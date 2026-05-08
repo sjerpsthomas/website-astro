@@ -2,10 +2,7 @@
 title: Bachelorscriptie
 subtitle: Optimale 3D-diepteplaatjes
 image: "@portfolio/bachelors_thesis.png"
-tags:
-  - solo
-  - programmeren
-  - universiteit
+category: programming
 links:
   - text: Publicatie
     href: https://repository.tudelft.nl/record/uuid:75fd3cb7-da3e-4ce7-8e2c-708303a3127c

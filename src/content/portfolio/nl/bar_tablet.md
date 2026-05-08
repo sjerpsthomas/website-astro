@@ -2,10 +2,7 @@
 title: Bartablet
 subtitle: Een app om biertjes mee te bestellen in Kotlin/Jetpack Compose
 image: "@portfolio/bar_tablet.png"
-tags:
-  - solo
-  - programmeren
-  - vereniging
+category: programming
 links:
   - text: Repository
     href: https://github.com/grooverjazz/bar

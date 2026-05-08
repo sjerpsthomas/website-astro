@@ -2,9 +2,7 @@
 title: Fotografie
 subtitle: Portret, omgeving en optredens
 image: "@portfolio/photography.png"
-tags:
-  - hobby
-  - solo
+category: association
 links: []
 date: 2022-09-01
 ---

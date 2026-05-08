@@ -2,9 +2,7 @@
 title: 'Band: Tiewrap'
 subtitle: Jazz duo
 image: "@portfolio/band_tiewrap.jpg"
-tags:
-  - music
-  - association
+category: music
 links:
   - text: Band page
     href: https://grooverjazz.nl/bands/Tiewrap

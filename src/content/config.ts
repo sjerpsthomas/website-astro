@@ -10,7 +10,7 @@ const portfolio = defineCollection({
 
     image: image(),
 
-    tags: z.array(z.string()),
+    category: z.string(),
 
     links: z.array(z.object({ text: z.string(), href: z.string() })),
 

@@ -2,10 +2,7 @@
 title: Groover Top 2-Jazzend
 subtitle: Voting for 'The List of Lists' using Python
 image: "@portfolio/groover_top_2_jazzend.png"
-tags:
-  - solo
-  - programming
-  - association
+category: association
 links:
   - text: Top 2-Jazzend
     href: https://open.spotify.com/playlist/0l2uxk9gEZIPveqsheEwJ1

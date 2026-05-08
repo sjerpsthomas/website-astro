@@ -2,9 +2,7 @@
 title: Stage manager
 subtitle: Responsibilities during (medium) large music festival
 image: "@portfolio/stage_manager.jpg"
-tags:
-  - in a team
-  - association
+category: association
 links:
   - text: justjazzfestival.nl
     href: https://justjazzfestival.nl/

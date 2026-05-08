@@ -2,9 +2,7 @@
 title: Educool
 subtitle: Music production
 image: "@portfolio/educool.png"
-tags:
-  - hobby
-  - music
+category: music
 links:
   - text: Spotify
     href: https://open.spotify.com/artist/5Ac67c0SMLpaQS5FZJeNsE

@@ -2,9 +2,7 @@
 title: 'Band: Once More'
 subtitle: Jazz combo
 image: "@portfolio/band_once_more.jpg"
-tags:
-  - music
-  - association
+category: music
 links:
   - text: Band page
     href: https://grooverjazz.nl/bands/Once%20More

@@ -62,7 +62,6 @@ const items: CollectionEntry<'portfolio'>[] = await getCollection('portfolio', (
 
       if (prevId !== id) {
         const newNode = (template.content.cloneNode(true) as DocumentFragment).firstElementChild!;
-        console.log(newNode);
         contentWrapper.appendChild(newNode);
         contentWrapper.dataset.activeId = id;
 

@@ -37,7 +37,7 @@ section, header {
     @apply mb-2;
   }
   a {
-    @apply underline text-blue-300 hover:cursor-pointer;
+    @apply underline text-blue-400 hover:cursor-pointer;
   }
 
   /* Lists and tables */

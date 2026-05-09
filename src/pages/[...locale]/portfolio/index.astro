@@ -11,9 +11,9 @@ export function getStaticPaths() {
 }
 
 const sections = [
-  { title: { nl: "programmeren", en: "programming" }, bg: bgProgramming, speed: 0.8, category: "programming" },
-  { title: { nl: "m'n studentenvereniging", en: "my association" }, bg: bgGroover, speed: 1.0, category: "association" },
-  { title: { nl: "muziek", en: "music" }, bg: bgMusic, speed: 1.2, category: "music" },
+  { title: { nl: "programmeren", en: "programming" }, bg: bgProgramming, speed: 0.6, category: "programming" },
+  { title: { nl: "m'n studentenvereniging", en: "my association" }, bg: bgGroover, speed: 0.7, category: "association" },
+  { title: { nl: "muziek", en: "music" }, bg: bgMusic, speed: 0.8, category: "music" },
 ]
 
 const locale = (Astro.params.locale ?? DEFAULT_LOCALE) as Locale;

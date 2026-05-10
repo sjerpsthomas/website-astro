@@ -24,7 +24,7 @@ const localeHref = locale === 'nl' ? '/' : `/en/`;
 const otherLocaleHref = locale === 'nl' ? `/en/` : '/';
 
 const currentPath = Astro.url.pathname;
-const currentPage = ("/" + currentPath).split('/').at(-1)
+const currentPage = ("/" + currentPath).split('/').findLast(it => it.trim() !== "");
 ---
 
 
@@ -68,6 +68,6 @@ const currentPage = ("/" + currentPath).split('/').at(-1)
   }
 </style>
 
-<script is:inline define:vars={{ currentPath }}>
-  alert(currentPath);
+<script is:inline define:vars={{ currentPage }}>
+  alert(currentPage);
 </script>

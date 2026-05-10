@@ -1,5 +1,5 @@
 ---
-import {type Locale} from "@lib/locale";
+import {type Locale, LOCALES} from "@lib/locale";
 import shirtBg from '@assets/shirt_bg.png';
 
 type Props = {
@@ -23,7 +23,8 @@ const dict = {
 const localeHref = locale === 'nl' ? '/' : `/en/`;
 const otherLocaleHref = locale === 'nl' ? `/en/` : '/';
 
-const currentPath = Astro.url.pathname;
+const localeRegex = new RegExp(`^/(${LOCALES.join('|')})(?=/|$)`);
+const currentPath = Astro.url.pathname.replace(localeRegex, '');
 const currentPage = dict.findLast(d => currentPath.startsWith(`/${d.href}`))!.href;
 ---
 

@@ -67,3 +67,7 @@ const currentPage = ("/" + currentPath).split('/').at(-1)
     @apply mx-3 my-1;
   }
 </style>
+
+<script is:inline define:vars={{ currentPath }}>
+  alert(currentPath);
+</script>

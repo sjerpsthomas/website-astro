@@ -18,4 +18,6 @@ const portfolio = defineCollection({
   }),
 });
 
-export const collections = { portfolio };
+const home = defineCollection({ type: "content" });
+
+export const collections = { portfolio, home };

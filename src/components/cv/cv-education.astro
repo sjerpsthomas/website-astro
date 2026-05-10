@@ -1,5 +1,5 @@
 ﻿---
-import type {Locale} from "@lib/locale";
+import type {Locale} from "../../lib/locale";
 
 type Props = {
   locale: Locale;
@@ -56,7 +56,7 @@ const dict = {
 
   <section class='flex flex-col gap-y-3 print:gap-y-1'>
     {
-      dict.educations.map((education, i) =>
+      dict.educations.map(education =>
         <div>
           <h2>{education.title}</h2>
           <div class='font-medium italic pl-5 mb-1 md:mb-2'>

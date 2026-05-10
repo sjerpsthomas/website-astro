@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from "astro:content";
-import type {AstroComponentFactory} from "astro/dist/runtime/server";
 
 type Props = {
   items: CollectionEntry<'portfolio'>[];
@@ -9,8 +8,13 @@ type Props = {
 }
 const { items, speed } = Astro.props;
 
-const itemsWithContent: { item: CollectionEntry<'portfolio'>, Content: AstroComponentFactory }[] = await Promise.all(
-  items.map(async (item) => {
+type ItemWithContent = {
+  item: CollectionEntry<'portfolio'>;
+  Content: Awaited<ReturnType<CollectionEntry<'portfolio'>['render']>>['Content'];
+};
+
+const itemsWithContent: ItemWithContent[] = await Promise.all(
+  items.map(async (item): Promise<ItemWithContent> => {
     const { Content } = await item.render();
     return { item, Content };
   }),

@@ -1,10 +1,11 @@
-﻿import astro from 'eslint-plugin-astro';
+﻿import { defineConfig } from 'eslint/config';
+import astro from 'eslint-plugin-astro';
 import sonarjs from 'eslint-plugin-sonarjs';
 import unicorn from 'eslint-plugin-unicorn';
 import tseslint from 'typescript-eslint';
 import astroParser from 'astro-eslint-parser';
 
-export default tseslint.config(
+export default defineConfig(
   ...astro.configs['flat/recommended'],
   sonarjs.configs.recommended,
   unicorn.configs.recommended,

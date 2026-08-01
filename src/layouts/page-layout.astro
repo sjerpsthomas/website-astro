@@ -17,11 +17,13 @@ const { locale } = Astro.props;
   <head>
     <Head title="Thomas Sjerps" />
   </head>
-  <body>
-    <Header locale={locale} />
-    <main>
-      <slot />
-    </main>
+  <body class="min-h-screen flex flex-col justify-between">
+    <div>
+      <Header locale={locale} />
+      <main>
+        <slot />
+      </main>
+    </div>
+    <Footer />
   </body>
-  <Footer/>
 </html>

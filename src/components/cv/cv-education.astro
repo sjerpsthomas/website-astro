@@ -1,9 +1,9 @@
 ---
-import type {Locale} from "../../lib/locale";
+import type { Locale } from "../../lib/locale";
 
 type Props = {
   locale: Locale;
-}
+};
 
 const { locale } = Astro.props;
 
@@ -54,17 +54,17 @@ const dict = {
 <div class="">
   <h1>{dict.title}</h1>
 
-  <section class='flex flex-col gap-y-3 print:gap-y-1'>
+  <section class="flex flex-col gap-y-3 print:gap-y-1">
     {
-      dict.educations.map(education =>
+      dict.educations.map((education) => (
         <div>
           <h2>{education.title}</h2>
-          <div class='font-medium italic pl-5 mb-1 md:mb-2'>
-            <p class="!mb-0">{education.location}</p>
+          <div class="font-medium italic pl-5 mb-1 md:mb-2">
+            <p class="mb-0!">{education.location}</p>
             <p>({education.timespan})</p>
           </div>
         </div>
-      )
+      ))
     }
   </section>
 </div>

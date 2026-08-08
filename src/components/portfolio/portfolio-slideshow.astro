@@ -1,16 +1,18 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 
 type Props = {
-  items: CollectionEntry<'portfolio'>[];
+  items: CollectionEntry<"portfolio">[];
   speed: number;
-}
+};
 const { items, speed } = Astro.props;
 
 type ItemWithContent = {
-  item: CollectionEntry<'portfolio'>;
-  Content: Awaited<ReturnType<CollectionEntry<'portfolio'>['render']>>['Content'];
+  item: CollectionEntry<"portfolio">;
+  Content: Awaited<
+    ReturnType<CollectionEntry<"portfolio">["render"]>
+  >["Content"];
 };
 
 const itemsWithContent: ItemWithContent[] = await Promise.all(
@@ -24,50 +26,73 @@ const duplicatedItems = [...itemsWithContent, ...itemsWithContent];
 ---
 
 <div>
-  {itemsWithContent.map(({ item, Content }) => {
-    const { id, data: { title, image, links } } = item;
+  {
+    itemsWithContent.map(({ item, Content }) => {
+      const {
+        id,
+        data: { title, image, links },
+      } = item;
 
-    return (
-      <div class="portfolio-card" data-id={id}>
-        <template id={`portfolio-content-${id}`}>
-          <div class="content size-full flex pointer-events-auto bg-cover bg-center backdrop-blur-xl" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.85),rgba(0,0,0,0.85)), url(${image.src})` }}>
-            <div class="flex flex-col overflow-y-auto text-shadow-large select-none mx-auto">
-              <div class="flex flex-row lg:px-[20%] px-5 not-lg:py-5 my-auto">
-                <div>
-                  <h1>{title}</h1>
+      return (
+        <div class="portfolio-card" data-id={id}>
+          <template id={`portfolio-content-${id}`}>
+            <div
+              class="content size-full flex pointer-events-auto bg-cover bg-center backdrop-blur-xl"
+              style={{
+                backgroundImage: `linear-gradient(rgba(0,0,0,0.85),rgba(0,0,0,0.85)), url(${image.src})`,
+              }}
+            >
+              <div class="flex flex-col overflow-y-auto text-shadow-large select-none mx-auto">
+                <div class="flex flex-row lg:px-[20%] px-5 not-lg:py-5 my-auto">
+                  <div>
+                    <h1>{title}</h1>
 
-                  <Content />
+                    <Content />
 
-                  <div class="flex flex-wrap space-x-3 mt-2">
-                    {links.map((link: any) => (
-                      <a href={link.href} target="_blank" set:text={link.text} />
-                    ))}
+                    <div class="flex flex-wrap space-x-3 mt-2">
+                      {links.map((link: any) => (
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          set:text={link.text}
+                        />
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </template>
-      </div>
-    );
-  })}
+          </template>
+        </div>
+      );
+    })
+  }
 </div>
 
 <div class="slideshow select-none pointer-events-auto" data-speed={speed}>
   <div class="flex">
-    {duplicatedItems.map(it => it.item).map((item) => (
-      <div class="slide relative group hover:cursor-pointer" data-id={item.id}>
-        <Image
-          class="image absolute h-full rounded-4xl transition-all duration-300 group-hover:scale-105 group-hover:brightness-50"
-          src={item.data.image}
-          alt={"Portfolio item: " + item.data.title}
-        />
+    {
+      duplicatedItems
+        .map((it) => it.item)
+        .map((item) => (
+          <div
+            class="slide relative group hover:cursor-pointer"
+            data-id={item.id}
+          >
+            <Image
+              class="image absolute h-full rounded-4xl transition-all duration-300 group-hover:scale-105 group-hover:brightness-50"
+              src={item.data.image}
+              alt={"Portfolio item: " + item.data.title}
+            />
 
-        <div class="absolute size-full flex items-center justify-center select-none pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <p class="text-white font-bold lg:!text-xl text-lg scale-75 group-hover:scale-100 text-shadow-large transition-transform">{item.data.title}</p>
-        </div>
-      </div>
-    ))}
+            <div class="absolute size-full flex items-center justify-center select-none pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <p class="text-white font-bold lg:text-xl! text-lg scale-75 group-hover:scale-100 text-shadow-large transition-transform">
+                {item.data.title}
+              </p>
+            </div>
+          </div>
+        ))
+    }
   </div>
 </div>
 
@@ -89,7 +114,9 @@ const duplicatedItems = [...itemsWithContent, ...itemsWithContent];
   .content {
     opacity: 0;
     transform: translateY(10px);
-    transition: opacity 0.2s ease-out, transform 0.4s ease-out;
+    transition:
+      opacity 0.2s ease-out,
+      transform 0.4s ease-out;
   }
 
   .content.is-visible {
@@ -99,31 +126,39 @@ const duplicatedItems = [...itemsWithContent, ...itemsWithContent];
 </style>
 
 <script>
-  import EmblaCarousel from 'embla-carousel';
-  import AutoScroll from 'embla-carousel-auto-scroll'
+  import EmblaCarousel from "embla-carousel";
+  import AutoScroll from "embla-carousel-auto-scroll";
 
   const OPTIONS = { loop: true, dragFree: true };
-  const slideshows = document.querySelectorAll<HTMLElement>('.slideshow');
+  const slideshows = document.querySelectorAll<HTMLElement>(".slideshow");
 
   slideshows.forEach((slideshow) => {
     const scrollSpeed = Number(slideshow.dataset.speed) || 1;
-    const autoScrollOptions = [AutoScroll({ speed: scrollSpeed, startDelay: 1000, direction: "backward" })];
+    const autoScrollOptions = [
+      AutoScroll({
+        speed: scrollSpeed,
+        startDelay: 1000,
+        direction: "backward",
+      }),
+    ];
 
     const emblaApi = EmblaCarousel(slideshow, OPTIONS, autoScrollOptions);
 
-    const autoScroll = emblaApi.plugins().autoScroll
+    const autoScroll = emblaApi.plugins().autoScroll;
     if (autoScroll) {
-      emblaApi.on('pointerUp', () => autoScroll.play())
+      emblaApi.on("pointerUp", () => autoScroll.play());
     }
 
-    const slides = slideshow.querySelectorAll<HTMLElement>('.slide');
+    const slides = slideshow.querySelectorAll<HTMLElement>(".slide");
     slides.forEach((slide) => {
       slide.onclick = () => {
-        slide.dispatchEvent(new CustomEvent('portfolio-item-select', {
-          bubbles: true,
-          detail: {id: slide.getAttribute('data-id')}
-        }));
+        slide.dispatchEvent(
+          new CustomEvent("portfolio-item-select", {
+            bubbles: true,
+            detail: { id: slide.getAttribute("data-id") },
+          }),
+        );
       };
-    })
+    });
   });
 </script>

@@ -1,11 +1,11 @@
 ---
-import type {Locale} from "../../lib/locale";
+import type { Locale } from "../../lib/locale";
 import BulletPointList from "../bullet-point-list.astro";
-import {getDictKeys} from "../../lib/utils";
+import { getDictKeys } from "../../lib/utils";
 
 type Props = {
   locale: Locale;
-}
+};
 
 const { locale } = Astro.props;
 
@@ -29,7 +29,7 @@ const abilities = {
     "Microsoft Office",
     "Figma",
   ],
-}
+};
 
 const dict = {
   nl: {
@@ -52,17 +52,14 @@ const dict = {
         "Kritisch",
       ],
       ...abilities,
-      languages: [
-        "Nederlands",
-        "Engels",
-      ],
+      languages: ["Nederlands", "Engels"],
       hobbies: [
         "Game development",
         "Pianospelen",
         "Muziekproductie",
         "Fotografie",
         "Theater",
-      ]
+      ],
     },
   },
   en: {
@@ -85,17 +82,14 @@ const dict = {
         "Critical",
       ],
       ...abilities,
-      languages: [
-        "Dutch",
-        "English",
-      ],
+      languages: ["Dutch", "English"],
       hobbies: [
         "Game development",
         "Piano playing",
         "Music production",
         "Photography",
         "Theatre",
-      ]
+      ],
     },
   },
 }[locale];
@@ -106,12 +100,12 @@ const dict = {
 
   <section>
     {
-      getDictKeys(dict.headers).map((header) =>
-        <div class='mb-3'>
+      getDictKeys(dict.headers).map((header) => (
+        <div class="mb-3">
           <h2>{dict.headers[header]}</h2>
-          <BulletPointList content={dict.abilities[header]}/>
+          <BulletPointList content={dict.abilities[header]} />
         </div>
-      )
+      ))
     }
   </section>
 </div>

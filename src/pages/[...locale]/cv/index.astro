@@ -1,33 +1,39 @@
 ---
 import PageLayout from "@layouts/page-layout.astro";
-import {DEFAULT_LOCALE, type Locale, LOCALES} from "@lib/locale.ts";
+import { DEFAULT_LOCALE, type Locale, LOCALES } from "@lib/locale.ts";
 import Education from "@components/cv/cv-education.astro";
 import Abilities from "@components/cv/cv-abilities.astro";
 import Experience from "@components/cv/cv-experience.astro";
-import {Image} from "astro:assets";
-import profilePhoto from '@assets/profile_photo.jpg';
-import paperBg from '@assets/paper_bg.png';
+import { Image } from "astro:assets";
+import profilePhoto from "@assets/profile_photo.jpg";
+import paperBg from "@assets/paper_bg.png";
 
 export function getStaticPaths() {
-  return [...LOCALES.map(it => ({params: {locale: it}})), {params: {locale: undefined}}];
+  return [
+    ...LOCALES.map((it) => ({ params: { locale: it } })),
+    { params: { locale: undefined } },
+  ];
 }
 
 const locale = (Astro.params.locale ?? DEFAULT_LOCALE) as Locale;
 
 const dict = {
   nl: {
-    factDigital: ["Leuk feitje: als je deze pagina ", ", krijg je mijn echte CV!"],
+    factDigital: [
+      "Leuk feitje: als je deze pagina ",
+      ", krijg je mijn echte CV!",
+    ],
     factPrint: [
       "Leuk feitje: deze pagina is een afdruk van thomassjerps.nl/cv!",
-      "Op deze site kun je ook mijn portfolio vinden, en meer."
-    ]
+      "Op deze site kun je ook mijn portfolio vinden, en meer.",
+    ],
   },
   en: {
     factDigital: ["Fun fact: if you ", " this page, you get my actual CV!"],
     factPrint: [
       "Fun fact: this page is a print-out of thomassjerps.nl/cv!",
-      "On this site, you can also find my portfolio and more."
-    ]
+      "On this site, you can also find my portfolio and more.",
+    ],
   },
 }[locale];
 ---
@@ -38,33 +44,43 @@ const dict = {
     style={{ "--paper-bg": `url('${paperBg.src}')` }}
   >
     <!--Printout comment-->
-    <div class='print:hidden text-center font-bold py-8 italic'>
-      <p>{dict.factDigital[0]}<a onclick="window.print()">print</a>{dict.factDigital[1]}</p>
+    <div class="print:hidden text-center font-bold py-8 italic">
+      <p>
+        {dict.factDigital[0]}<a onclick="window.print()">print</a>{
+          dict.factDigital[1]
+        }
+      </p>
     </div>
 
     <!--Main photo-->
     <div class="not-print:hidden flex flex-row items-center">
-      <Image class="size-[7rem] m-5 rounded-2xl" src={profilePhoto} alt="Thomas Sjerps"/>
+      <Image
+        class="size-28 m-5 rounded-2xl"
+        src={profilePhoto}
+        alt="Thomas Sjerps"
+      />
 
       <div class="flex flex-col">
-        <h1 class="!text-4xl font-bold !mb-2">Thomas Sjerps</h1>
+        <h1 class="text-4xl! font-bold mb-2!">Thomas Sjerps</h1>
         <p>LinkedIn: /in/thomas-sjerps</p>
         <p>GitHub: /sjerpsthomas</p>
 
-        <p class="italic">{dict.factPrint[0]}<br/>{dict.factPrint[1]}</p>
+        <p class="italic">{dict.factPrint[0]}<br />{dict.factPrint[1]}</p>
       </div>
     </div>
 
-    <div class='flex not-print:w-[50%] print:w-[90%] flex-wrap space-x-20 justify-stretch items-stretch mx-auto'>
+    <div
+      class="flex not-print:w-[50%] print:w-[90%] flex-wrap space-x-20 justify-stretch items-stretch mx-auto"
+    >
       <!--Education / Abilities-->
-      <div class='flex-1 flex flex-col space-y-10 print:w-[40%]'>
-        <Education locale={locale}/>
-        <Abilities locale={locale}/>
+      <div class="flex-1 flex flex-col space-y-10 print:w-[40%]">
+        <Education locale={locale} />
+        <Abilities locale={locale} />
       </div>
 
       <!--Experience-->
-      <div class='flex-1/4 print:w-[60%]'>
-        <Experience locale={locale}/>
+      <div class="flex-1/4 print:w-[60%]">
+        <Experience locale={locale} />
       </div>
     </div>
   </section>
@@ -78,4 +94,3 @@ const dict = {
     }
   }
 </style>
-

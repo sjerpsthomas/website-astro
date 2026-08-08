@@ -15,7 +15,8 @@ body {
 }
 
 /* Text sections */
-section, header {
+section,
+header {
   font-family: var(--font-thomas-sans), sans-serif;
 
   @apply text-base print:text-[7pt] print:leading-tight;
@@ -27,15 +28,18 @@ section, header {
 
     margin-bottom: 0.1rem;
   }
+
   h2 {
     @apply lg:text-lg text-sm print:text-xs;
 
     margin-bottom: 0.2rem;
     @apply font-bold
   }
+
   p {
     @apply mb-2;
   }
+
   a {
     @apply underline text-blue-400 hover:cursor-pointer;
   }
@@ -47,12 +51,16 @@ section, header {
     margin-left: 1.2rem;
     padding-left: 0.3rem;
   }
+
   table {
     @apply my-5 w-full;
   }
-  table, th {
+
+  table,
+  th {
     border: 1px solid;
   }
+
   td {
     border: 1px solid;
     @apply px-2 py-2;

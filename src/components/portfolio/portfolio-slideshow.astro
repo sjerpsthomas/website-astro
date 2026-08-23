@@ -69,7 +69,7 @@ const duplicatedItems = [...itemsWithContent, ...itemsWithContent];
   }
 </div>
 
-<div class="slideshow select-none pointer-events-auto" data-speed={speed}>
+<div class="slideshow init transition-all duration-500 select-none pointer-events-auto" data-speed={speed}>
   <div class="flex">
     {
       duplicatedItems
@@ -97,6 +97,16 @@ const duplicatedItems = [...itemsWithContent, ...itemsWithContent];
 </div>
 
 <style>
+  .slideshow.init {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .slideshow:not(.init) {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   .slide {
     .image {
       padding: calc(var(--spacing) * 4);
@@ -132,30 +142,42 @@ const duplicatedItems = [...itemsWithContent, ...itemsWithContent];
   const OPTIONS = { loop: true, dragFree: true };
   const slideshows = document.querySelectorAll<HTMLElement>(".slideshow");
 
-  slideshows.forEach((slideshow) => {
+  slideshows.forEach((slideshow, index) => {
+    setTimeout(() => {
+      slideshow.classList.remove("init");
+    }, index * 50 + 100);
+
+    const slides = slideshow.querySelectorAll<HTMLElement>(".slide");
+
+    const randomSlideIndex = Math.floor(Math.random() * slides.length);
+
     const scrollSpeed = Number(slideshow.dataset.speed) || 1;
     const autoScrollOptions = [
       AutoScroll({
         speed: scrollSpeed,
-        startDelay: 1000,
+        startDelay: 0,
         direction: "backward",
       }),
     ];
 
-    const emblaApi = EmblaCarousel(slideshow, OPTIONS, autoScrollOptions);
+    const emblaApi = EmblaCarousel(
+      slideshow,
+      { ...OPTIONS, startIndex: randomSlideIndex },
+      autoScrollOptions,
+    );
 
     const autoScroll = emblaApi.plugins().autoScroll;
     if (autoScroll) {
       emblaApi.on("pointerUp", () => autoScroll.play());
     }
 
-    const slides = slideshow.querySelectorAll<HTMLElement>(".slide");
     slides.forEach((slide) => {
       slide.onclick = () => {
+        autoScroll?.stop();
         slide.dispatchEvent(
           new CustomEvent("portfolio-item-select", {
             bubbles: true,
-            detail: { id: slide.getAttribute("data-id") },
+            detail: { id: slide.getAttribute("data-id"), emblaApi },
           }),
         );
       };

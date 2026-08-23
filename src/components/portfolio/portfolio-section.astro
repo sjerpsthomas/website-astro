@@ -23,7 +23,7 @@ const items: CollectionEntry<"portfolio">[] = await getCollection(
 ---
 
 <section
-  class="portfolio-section h-fit transition-all"
+  class="portfolio-section h-fit"
   style={{
     backgroundImage: `linear-gradient(to right,rgba(0,0,0,0.3),black), url(${background.src})`,
     backgroundSize: "cover",
@@ -31,7 +31,9 @@ const items: CollectionEntry<"portfolio">[] = await getCollection(
 >
   <!--Slideshow with header to the left-->
   <div class="flex h-fit lg:flex-row flex-col justify-stretch lg:items-center">
-    <div class="lg:p-20 p-6 text-shadow-large">
+    <div
+      class="i-love init transition-all duration-500 lg:p-20 p-6 text-shadow-large"
+    >
       <p class="-mb-1!">{iLoveText[locale]}</p>
       <h1 class="size-fit lg:text-4xl! text-3xl!">
         {title}:
@@ -51,6 +53,7 @@ const items: CollectionEntry<"portfolio">[] = await getCollection(
 </section>
 
 <script>
+  import type { EmblaCarouselType } from "embla-carousel";
   const sections = document.querySelectorAll<HTMLElement>(".portfolio-section");
 
   sections.forEach((section) => {
@@ -58,24 +61,26 @@ const items: CollectionEntry<"portfolio">[] = await getCollection(
       ".content-wrapper",
     ) as HTMLElement;
 
-    contentWrapper.onclick = () => {
-      clearContent(contentWrapper);
-    };
-
     section.addEventListener("portfolio-item-select", (e) => {
-      const { id } = (e as unknown as { detail: { id: string } }).detail;
+      const { id, emblaApi } = (
+        e as unknown as { detail: { id: string; emblaApi: EmblaCarouselType } }
+      ).detail;
       const prevId = contentWrapper.dataset.activeId;
       const template = document.getElementById(
         `portfolio-content-${id}`,
       ) as HTMLTemplateElement;
-
-      clearContent(contentWrapper);
 
       if (prevId !== id) {
         const newNode = (template.content.cloneNode(true) as DocumentFragment)
           .firstElementChild!;
         contentWrapper.appendChild(newNode);
         contentWrapper.dataset.activeId = id;
+
+        contentWrapper.onclick = () => {
+          contentWrapper.innerHTML = "";
+          delete contentWrapper.dataset.activeId;
+          emblaApi.plugins().autoScroll.play(0);
+        };
 
         requestAnimationFrame(() => {
           newNode.classList.add("is-visible");
@@ -84,8 +89,22 @@ const items: CollectionEntry<"portfolio">[] = await getCollection(
     });
   });
 
-  function clearContent(content: HTMLElement) {
-    content.innerHTML = "";
-    delete content.dataset.activeId;
-  }
+  const i_loves = document.querySelectorAll<HTMLElement>(".i-love");
+  i_loves.forEach((i_love, index) => {
+    setTimeout(() => {
+      i_love.classList.remove("init");
+    }, index * 50);
+  });
 </script>
+
+<style>
+  .i-love.init {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .i-love:not(.init) {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
